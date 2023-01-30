@@ -118,9 +118,9 @@ const UserInfoCard = ({ selectedUser }) => {
                   <span className='fw-bolder me-25'>Status:</span>
                   <Badge 
                     className='text-capitalize' 
-                    color={statusColors[selectedUser?.status === "activate" ? 'active' : selectedUser?.status === "deactivate" ? 'pending' : 'inactive']} 
+                    color={statusColors[selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'pending' : 'inactive']} 
                     pill>
-                    {selectedUser?.status === "activate" ? 'active' : selectedUser?.status === "deactivate" ? 'inactive' : 'blocked'}
+                    {selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'inactive' : 'blocked'}
                   </Badge>
                 </li>
                 <li className='mb-75'>

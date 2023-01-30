@@ -23,8 +23,13 @@ export const authSlice = createSlice({
       state[config.storageTokenKeyName] = action.payload[config.storageTokenKeyName]
       state[config.storageRefreshTokenKeyName] = action.payload[config.storageRefreshTokenKeyName]
       localStorage.setItem('userData', JSON.stringify(action.payload))
-      localStorage.setItem(config.storageTokenKeyName, JSON.stringify(action.payload.accessToken))
-      localStorage.setItem(config.storageRefreshTokenKeyName, JSON.stringify(action.payload.refreshToken))
+     localStorage.setItem(config.storageTokenKeyName, JSON.stringify(action.payload.accessToken))
+     localStorage.setItem(config.storageRefreshTokenKeyName, JSON.stringify(action.payload.refreshToken))
+
+        localStorage.setItem('accessToken', JSON.stringify(action.payload.accessToken))
+        localStorage.setItem('refreshToken', JSON.stringify(action.payload.refreshToken))
+
+
     },
     handleLogout: state => {
       state.userData = {}
@@ -34,6 +39,9 @@ export const authSlice = createSlice({
       localStorage.removeItem('userData')
       localStorage.removeItem(config.storageTokenKeyName)
       localStorage.removeItem(config.storageRefreshTokenKeyName)
+      localStorage.removeItem('accessToken', JSON.stringify(action.payload.accessToken))
+      localStorage.removeItem('refreshToken', JSON.stringify(action.payload.refreshToken))
+
     }
   }
 })

@@ -145,7 +145,7 @@ export const columns = [
           row?.status === "active" ? 'active' : row?.status === "deactive" ? 'inactive' : 'blocked'
         }
       </Badge>
-    )
+    ) 
   },
   {
     name: 'Actions',
@@ -188,7 +188,7 @@ export const columns = [
                 e.preventDefault()
                 store.dispatch(blockUser({
                   id: row._id,
-                  status: "blocked"
+                  status: row.status === "blocked" ? "active" : "blocked"
                 }))
               }}
             >

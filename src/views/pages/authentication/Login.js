@@ -81,7 +81,7 @@ const Login = () => {
         .then(async(response) => {
           
           if (response.status === 200) {
-            //console.log(response.data.data)              
+            console.log("Accesstoken from logn==>", response.data.data.accessToken)            
 
             /* get user full detils for display name and role*/
             const config = {
@@ -95,6 +95,8 @@ const Login = () => {
             .get(userUrl, config)
             .then(async(res) => {
               if (res.status === 200) {
+                console.log("role Details==>", res.data.data.role)
+                
                 firstName = res.data.data.firstName
                 userRole = res.data.data.role.name
                 avatar = res.data.data.avatar           
@@ -106,7 +108,7 @@ const Login = () => {
                 <ToastContent
                   t={t}
                   name={`User not found`}
-                  role={`${err.res.data.errors[0].detail}`}
+                  role={`${err}`}
                 />
               ))
             })
@@ -164,7 +166,7 @@ const Login = () => {
             <ToastContent
               t={t}
               name={`Login Failed`}
-              role={`${err.response.data.errors[0].detail}`} //
+              role={`${err.response.data}`} //
             />
           ))
         })

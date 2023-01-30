@@ -52,6 +52,7 @@ export const getUser = createAsyncThunk('appUserList/getUser', async (id) => {
     //   include: "role,companies,companies.category,companies.vacancies,resume,resume.experience,resume.skills,resume.education,resume.achivements,resumeAppliedInCompanies,resumeAppliedInCompanies.vacancy"
     // }
   }
+  
   const response = await axios.get(`${API}user/fetch/${id}`, config)
   return response.data.data
 })

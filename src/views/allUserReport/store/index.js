@@ -8,8 +8,8 @@ const authData = JSON.parse(localStorage.getItem("userData"))
 export const getAllData = createAsyncThunk('appUserList/getAllData', async () => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-      // Authorization: `Bearer ${authData.accessToken}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      //Authorization: `Bearer ${authData.accessToken}`
     },
     params: {
       sort: "updatedAt",
@@ -26,7 +26,9 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
 
   const config = {
     headers: {
-      Authorization: `Bearer ${authData.accessToken}`
+      //Authorization: `Bearer ${authData.accessToken}`
+      // Authorization: `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
     },
     params: {
       sort: "updatedAt",
@@ -47,13 +49,16 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
 export const getUser = createAsyncThunk('appUserList/getUser', async (id) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-      // Authorization: `Bearer ${authData.accessToken}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      // Authorization: `Bearer ${localStorage.getItem('token')}`
+      //Authorization: `Bearer ${authData.accessToken}`
     }
+    
     // params: {
     //   include: "role,companies,companies.category,companies.vacancies,resume,resume.experience,resume.skills,resume.education,resume.achivements,resumeAppliedInCompanies,resumeAppliedInCompanies.vacancy"
     // }
   }
+  //console.log(authData.accessToken)
   const response = await axios.get(`${API}user/fetch/${id}`, config)
   return response.data.data
 })
@@ -74,7 +79,7 @@ export const addUser = createAsyncThunk('appUserList/addUser', async (user, { di
 export const deleteUser = createAsyncThunk('appUserList/deleteUser', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
@@ -84,27 +89,30 @@ export const deleteUser = createAsyncThunk('appUserList/deleteUser', async (id, 
   return id
 })
 
+console.log(localStorage.getItem('accessToken'), "accessToken")
 export const permitUser = createAsyncThunk('appUserList/permitUser', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-      // Authorization: `Bearer ${authData.accessToken}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      //Authorization: `Bearer ${authData.accessToken}`
     }
-  }    
+  }   
+  console.log("accessToken==>", localStorage.getItem('accessToken'))
   await axios.patch(`${API}admin/permit-user/${id}`, config)
-  await dispatch(getData(getState().users.params))
-  await dispatch(getAllData())
+  //await dispatch(getData(getState().users.params))
+  //await dispatch(getAllData())
   return id
 })
 
 export const blockUser = createAsyncThunk('appUserList/blockUser', async (data, { dispatch, getState }) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
+      //Authorization: `Bearer ${localStorage.getItem('token')}`
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.patch(`${API}admin/user/status/${data.id}`, config, { status: data.status })
+  await axios.patch(`${API}admin/user/status/${data.id}`, { status: data.status }, config)
   await dispatch(getData(getState().users.params))
   await dispatch(getAllData())
   return id
