@@ -1,8 +1,8 @@
-import { Circle, User } from "react-feather"
+import { User } from "react-feather"
 
 export default [
     {
-        header: 'Detsils'
+        header: 'Details'
     },
     {
         id: 'userList',

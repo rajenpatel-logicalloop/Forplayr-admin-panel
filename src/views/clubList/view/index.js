@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect /*, useState*/ } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
@@ -26,16 +26,16 @@ const ClubView = () => {
 
   // ** Get suer on mount
   useEffect(() => {
-    dispatch(getClub(id))
+    dispatch(getclub(id))
   }, [dispatch])
 
-  // const [active, setActive] = useState('1')
+  const [active, setActive] = useState('1')
 
-  // const toggleTab = tab => {
-  //   if (active !== tab) {
-  //     setActive(tab)
-  //   }
-  // }
+  const toggleTab = tab => {
+    if (active !== tab) {
+      setActive(tab)
+    }
+  }
 
   return store.selectedClub !== null && store.selectedClub !== undefined ? (
     <div className='app-club-view'>
@@ -44,11 +44,11 @@ const ClubView = () => {
           <ClubInfoCard selectedClub={store.selectedClub} />
         </Col>
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          {/* <UserTabs
+          <UserTabs
             active={active}
             toggleTab={toggleTab}
-            selectedUser={store.selectedUser}
-          /> */}
+            selectedClub={store.selectedClub}
+          />
         </Col>
       </Row>
     </div>
@@ -56,7 +56,7 @@ const ClubView = () => {
     <Alert color='danger'>
       <h4 className='alert-heading'>Club not found</h4>
       <div className='alert-body'>
-        Club with id: {id} doesn't exist. Check list of all Clubs: <Link to='/apps/all-club-list'>All Clubs List</Link>
+        club with id: {id} doesn't exist. Check list of all clubs: <Link to='/apps/club/list'>Clubs List</Link>
       </div>
     </Alert>
   )

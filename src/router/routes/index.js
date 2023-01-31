@@ -15,6 +15,8 @@ import AuthenticationRoutes from './Authentication'
 //NEW ROUTES USED
 import UserList from './UserLists'
 import AllUserList from './AllUserList'
+import ClubList from './ClubLists'
+import AllClubList from './AllClubList'
 
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
@@ -55,7 +57,9 @@ const Routes = [
   ...ChartsRoutes,
   //NEW ROUTES USED
   ...UserList,
-  ...AllUserList
+  ...AllUserList,
+  ...ClubList,
+  ...AllClubList
 ]
 
 const getRouteMeta = route => {

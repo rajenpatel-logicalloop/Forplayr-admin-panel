@@ -14,6 +14,7 @@ import dataTables from '@src/views/tables/data-tables/store'
 import permissions from '@src/views/apps/roles-permissions/store'
 //API REDUCER USED FOR Forplayr
 import userList from '@src/views/userList/store'
+import clubList from '@src/views/clubList/store'
 
 
 const rootReducer = {
@@ -31,7 +32,8 @@ const rootReducer = {
   dataTables,
   permissions,
   //API REDUCER USED FOR Forplayr
-  userList
+  userList,
+  clubList
 }
 
 export default rootReducer

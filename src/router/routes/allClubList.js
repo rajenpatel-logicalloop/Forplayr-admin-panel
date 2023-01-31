@@ -2,21 +2,21 @@
 import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
 
-const clubsList = lazy(() => import('../../views/allClubList/list'))
-const ClubView = lazy(() => import('../../views/allClubList/view'))
+const ClubsList = lazy(() => import('../../views/allClubReport/list'))
+const ClubView = lazy(() => import('../../views/allClubReport/view'))
 
 const AppRoutes = [
     {
-        element: <clubsList />,
-        path: '/apps/all-user-list'
+        element: <ClubsList />,
+        path: '/apps/all-club-list'
     },
     {
-        path: '/apps/all-user-list/view',
-        element: <Navigate to='/apps/all-user-list/view/1' />
+        element: <Navigate to='/apps/all-club-list/view' />,
+        path: '/apps/all-club-list/view'
     },
     {
-        element: <UserView />,
-        path: '/apps/all-user-list/view/:id'
+        element: <ClubView />,
+        path: '/apps/all-club-list/view/:id'
     }
 ]
 

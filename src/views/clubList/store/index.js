@@ -5,24 +5,25 @@ import axios from 'axios'
 import API from '../../../configs/api'
 const authData = JSON.parse(localStorage.getItem("userData"))
 
-export const getAllData = createAsyncThunk('appUserList/getAllData', async () => {
+export const getAllClubData = createAsyncThunk('appClubList/getAllClubData', async () => {
+  //console.log("clublist==>", localStorage.getItem('accessToken')) 
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
-    },
-    params: {
+    }, 
+     params: {
       sort: "updatedAt",
       order: "desc",
       page: 1,
       limit: 10
     }
   }
-  const response = await axios.get(`${API}user/fetch`, config)
+  const response = await axios.get(`${API}club/fetch`, config)
   return response.data.data
 })
 
-export const getData = createAsyncThunk('appUserList/getData', async (params) => {
+export const getClubData = createAsyncThunk('appClubList/getClubData', async (params) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -32,11 +33,10 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
       sort: "updatedAt",
       order: params.sort,
       page: params.page,
-      limit: params.perPage,
-      search: params.q
+      limit: params.perPage      
     }
   }
-  const response = await axios.get(`${API}user/fetch`, config)
+  const response = await axios.get(`${API}club/fetch`, config)
   return {
     params,
     data: response.data.data,
@@ -44,7 +44,7 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
   }
 })
 
-export const getUser = createAsyncThunk('appUserList/getUser', async (id) => {
+export const getClub = createAsyncThunk('appClubList/getClub', async (id) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -55,48 +55,48 @@ export const getUser = createAsyncThunk('appUserList/getUser', async (id) => {
     // }
   }
   
-  const response = await axios.get(`${API}user/fetch/${id}`, config)
+  const response = await axios.get(`${API}club/fetch/${id}`, config)
   return response.data.data
 })
 
-export const addUser = createAsyncThunk('appUserList/addUser', async (user, { dispatch, getState }) => {
-  await axios.post('/apps/users/add-user', user)
-  await dispatch(getData(getState().users.params))
-  await dispatch(getAllData())
-  return user
+export const addClub = createAsyncThunk('appClubList/addClub', async (club, { dispatch, getState }) => {
+  await axios.post('/apps/clubs/add-club', club)
+  await dispatch(getClubData(getState().clubs.params))
+  await dispatch(getAllClubData())
+  return club
 })
 
-export const deleteUser = createAsyncThunk('appUserList/deleteUser', async (id, { dispatch, getState }) => {
-  await axios.delete('/apps/users/delete', { id })
-  await dispatch(getData(getState().users.params))
-  await dispatch(getAllData())
+export const deleteClub = createAsyncThunk('appClubList/deleteClub', async (id, { dispatch, getState }) => {
+  await axios.delete('/apps/clubs/delete', { id })
+  await dispatch(getClubData(getState().clubs.params))
+  await dispatch(getAllClubData())
   return id
 })
 
-export const appUserListSlice = createSlice({
-  name: 'appUserList',
+export const appClubListSlice = createSlice({
+  name: 'appClubList',
   initialState: {
     data: [],
     total: 1,
     params: {},
     allData: [],
-    selectedUser: null
+    selectedClub: null
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllData.fulfilled, (state, action) => {
+      .addCase(getAllClubData.fulfilled, (state, action) => {
         state.allData = action.payload
       })
-      .addCase(getData.fulfilled, (state, action) => {
+      .addCase(getClubData.fulfilled, (state, action) => {
         state.data = action.payload.data
         state.params = action.payload.params
         state.total = action.payload.totalPages
       })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.selectedUser = action.payload
+      .addCase(getClub.fulfilled, (state, action) => {
+        state.selectedClub = action.payload
       })
   }
 })
 
-export default appUserListSlice.reducer
+export default appClubListSlice.reducer

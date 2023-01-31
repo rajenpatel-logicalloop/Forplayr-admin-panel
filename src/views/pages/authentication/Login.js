@@ -81,7 +81,7 @@ const Login = () => {
         .then(async(response) => {
           
           if (response.status === 200) {
-            console.log("Accesstoken from logn==>", response.data.data.accessToken)            
+            //console.log("Accesstoken from logn==>", response.data.data.accessToken)            
 
             /* get user full detils for display name and role*/
             const config = {
@@ -95,7 +95,7 @@ const Login = () => {
             .get(userUrl, config)
             .then(async(res) => {
               if (res.status === 200) {
-                console.log("role Details==>", res.data.data.role)
+                //console.log("role Details==>", res.data.data.role)
                 
                 firstName = res.data.data.firstName
                 userRole = res.data.data.role.name

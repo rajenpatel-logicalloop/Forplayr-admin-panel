@@ -14,9 +14,8 @@ import { User, UserPlus, UserCheck, UserX } from 'react-feather'
 import '@styles/react/apps/app-users.scss'
 
 const ClubsList = () => {
-  console.log("allclubereport\list==>", localStorage.getItem('accessToken')) 
   return (
-    <div className='app-class-list'>
+    <div className='app-club-list'>
       <Table />
     </div>
   )
