@@ -3,7 +3,8 @@ import { useEffect /*, useState*/ } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
-import { getClub } from '../store'
+//import { getClub } from '../store'
+import { getClub } from '../../clubList/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 // ** Reactstrap Imports
@@ -19,6 +20,7 @@ import '@styles/react/apps/app-users.scss'
 const ClubView = () => {
   // ** Store Vars
   const store = useSelector(state => state.clubList)
+  console.log("Club view store=>", store.selectedClub);
   const dispatch = useDispatch()
 
   // ** Hooks
@@ -36,6 +38,7 @@ const ClubView = () => {
   //     setActive(tab)
   //   }
   // }
+
 
   return store.selectedClub !== null && store.selectedClub !== undefined ? (
     <div className='app-club-view'>

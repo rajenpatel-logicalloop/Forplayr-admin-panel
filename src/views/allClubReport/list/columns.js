@@ -6,8 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getClub, deleteClub, permitClub, blockClub } from '../store'
-
+import { getClub, deleteClub, permitClub, blockClub, approvedClub } from '../../clubList/store'
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, CheckSquare, Slash } from 'react-feather'
 
@@ -34,7 +33,9 @@ const statusObj = {
     pending: 'light-warning',
     active: 'light-success',
     banned: 'light-secondary',
-    inactive: 'light-secondary'
+    inactive: 'light-secondary',
+    approved: 'light-success',
+    rejected:'light-secondary'
   }
   
 export const columns = [
@@ -42,14 +43,14 @@ export const columns = [
         name: 'Club',
         sortable: false,
         minWidth: '250px',
-        sortField: 'fullName',
+        sortField: 'businessName',
         selector: row => row?.businessName,
         cell: row => (
           <div className='d-flex justify-content-left align-items-center'>
             {renderClient(row)}
             <div className='d-flex flex-column'>
               <Link
-                to={`/view/${row?._id}`}
+                to={`/apps/clubList/view/${row?._id}`}
                 className='club_name text-truncate text-body'
                 onClick={() => store.dispatch(getClub(row?._id))}
               >
@@ -85,18 +86,18 @@ export const columns = [
         selector: (row) => row?.province?.name,
         cell: (row) => row?.province?.name
       },
-      {
-        name: 'Banned',
-        minWidth: '138px',
-        sortable: false,
-        sortField: 'isPermited',
-        selector: row => row?.isBanned,
-        cell: row => (
-          <Badge className='text-capitalize' color={statusObj[row?.isBanned ? 'banned' : 'active']} pill>
-            {row?.isBanned ? 'Banned' : 'Active'}
-          </Badge>
-        )
-      },
+      // {
+      //   name: 'Banned',
+      //   minWidth: '138px',
+      //   sortable: false,
+      //   sortField: 'isPermited',
+      //   selector: row => row?.isBanned,
+      //   cell: row => (
+      //     <Badge className='text-capitalize' color={statusObj[row?.isBanned ? 'banned' : 'active']} pill>
+      //       {row?.isBanned ? 'Banned' : 'Active'}
+      //     </Badge>
+      //   )
+      // },
       {
         name: 'Status',
         minWidth: '138px',
@@ -106,10 +107,10 @@ export const columns = [
         cell: row => (
           <Badge 
             className='text-capitalize' 
-            color={statusObj[row?.status === "active" ? 'active' : row?.status === "deactive" ? 'inactive' : 'blocked']} 
+            color={statusObj[row?.status === "approved" ? 'approved' : row?.status === "refused" ? 'refused' : 'blocked']} 
             pill>
             {
-              row?.status === "active" ? 'active' : row?.status === "deactive" ? 'inactive' : 'blocked'
+              row?.status === "approved" ? 'approved' : row?.status === "refused" ? 'refused' : 'blocked'
             }
           </Badge>
         ) 
@@ -127,7 +128,7 @@ export const columns = [
                 <DropdownItem
                   tag={Link}
                   className='w-100'
-                  to={`/apps/all-club-list/view/${row?._id}`}
+                  to={`/apps/clubList/view/${row?._id}`}
                   onClick={() => store.dispatch(getClub(row?._id))}
                 >
                   <FileText size={14} className='me-50' />
@@ -137,6 +138,21 @@ export const columns = [
                   <Archive size={14} className='me-50' />
                   <span className='align-middle'>Edit</span>
                 </DropdownItem> */}
+
+                <DropdownItem
+                  className='w-100'
+                  onClick={e => {
+                    e.preventDefault()
+                    store.dispatch(approvedClub({
+                      id: row._id,
+                      status: row.status === "refused" ? "approved" : "refused"
+                    }))
+                  }}
+                >
+                  <Slash size={14} className='me-50' />
+                  <span className='align-middle'>{row.status === "refused" ? "Approved" : "Refused"}</span>
+                </DropdownItem> 
+
                 <DropdownItem
                   // tag='a'
                   // href='/'
@@ -149,7 +165,7 @@ export const columns = [
                   <Trash2 size={14} className='me-50' />
                   <span className='align-middle'>Delete</span>
                 </DropdownItem> 
-                <DropdownItem
+                {/* <DropdownItem
                   className='w-100'
                   onClick={e => {
                     e.preventDefault()
@@ -161,8 +177,10 @@ export const columns = [
                 >
                   <Slash size={14} className='me-50' />
                   <span className='align-middle'>{row.status === "blocked" ? "Unblock" : "Block"}</span>
-                </DropdownItem> 
-                {/*!row?.isPermited && */<DropdownItem
+                </DropdownItem>  */}
+
+                {/*!row?.isPermited && */
+                <DropdownItem
                   className='w-100'
                   onClick={e => {
                     e.preventDefault()

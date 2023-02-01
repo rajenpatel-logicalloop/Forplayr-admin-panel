@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
-import { getClub } from '../store'
+import { getClub } from '../../clubList/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 // ** Reactstrap Imports

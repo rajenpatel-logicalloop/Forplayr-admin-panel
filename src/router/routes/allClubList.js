@@ -11,7 +11,7 @@ const AppRoutes = [
         path: '/apps/all-club-list'
     },
     {
-        element: <Navigate to='/apps/all-club-list/view' />,
+        element: <Navigate to='/apps/all-club-list/view/1' />,
         path: '/apps/all-club-list/view'
     },
     {

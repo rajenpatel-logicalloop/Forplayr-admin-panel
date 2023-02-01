@@ -135,6 +135,7 @@ const UsersList = () => {
   // ** Function in get data on search query change
   const handleFilter = val => {
     setSearchTerm(val)
+    console.log("handleFilter", val)
     dispatch(
       getData({
         sort,

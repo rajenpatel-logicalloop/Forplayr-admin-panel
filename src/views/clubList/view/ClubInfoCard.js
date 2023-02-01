@@ -27,17 +27,18 @@ const statusColors = {
   inactive: 'light-secondary'
 }
 
-const ClubInfoCard = ({ selectedclub }) => {
+const ClubInfoCard = ({ selectedClub }) => {
 
   // ** render user img
   const renderClubImg = () => {
-    if (selectedClub !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.shield}` !== null) {
+    //console.log("selectedclub==>", selectedClub.data.shield)
+    if (selectedClub !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.data?.shield}` !== null) {
       return (
         <img
           height='110'
           width='110'
           alt='club-avatar'
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedCubb?.shield}`}
+          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.data?.shield}`}
           className='img-fluid rounded mt-3 mb-2'
         />
       )
@@ -47,7 +48,7 @@ const ClubInfoCard = ({ selectedclub }) => {
           initials
           color={'light-primary'}
           className='rounded mt-3 mb-2'
-          content={selectedClub?.businessName}
+          content={selectedClub?.data?.businessName}
           contentStyles={{
             borderRadius: 0,
             fontSize: 'calc(48px)',
@@ -72,7 +73,7 @@ const ClubInfoCard = ({ selectedclub }) => {
               {renderClubImg()}
               <div className='d-flex flex-column align-items-center text-center'>
                 <div className='club-info'>
-                  <h4>{selectedClub?.businessName}</h4>
+                  <h4>{selectedClub?.data?.businessName}</h4>
                   {/* {selectedClub !== null ? (
                     <Badge color={roleColors[selectedClub?.role[0]?.name]} className='text-capitalize'>
                       {selectedUser?.role[0]?.name}
@@ -109,33 +110,33 @@ const ClubInfoCard = ({ selectedclub }) => {
               <ul className='list-unstyled'>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>ClubName : </span>
-                  <span>{selectedClub?.businessName}</span>
+                  <span>{selectedClub?.data?.businessName}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>CompanyEmail : </span>
-                  <span>{selectedClub?.companyEmail}</span>
+                  <span>{selectedClub?.data?.companyEmail}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>CompanyPhoneNo : </span>
-                  <span>{selectedClub?.companyPhoneNo.slice(0, 10)}</span>
+                  <span>{selectedClub?.data?.companyPhoneNo}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Address:</span>
-                  <span>{selectedclub?.address}</span>
+                  <span>{selectedClub?.data?.address}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>City:</span>
-                  <span>{selectedclub?.city}</span>
+                  <span>{selectedClub?.data?.city}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Province:</span>
-                  <span>{selectedclub?.province}</span>
+                  <span>{selectedClub?.data?.province}</span>
                 </li>
 
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Status: </span>
-                  <Badge className='text-capitalize' color={statusColors[selectedClub?.status === 'active' ? 'active' : 'inactive']}>
-                    {selectedClub?.status === 'active' ? 'active' : 'inactive'}
+                  <Badge className='text-capitalize' color={statusColors[selectedClub?.data?.status === 'approved' ? 'approved' : 'rejcected']}>
+                    {selectedClub?.data?.status === 'approved' ? 'approved' : 'rejected'}
                   </Badge>
                 </li>
               </ul>

@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
-import { getClub } from '../store'
+//import { getClub } from '../store'
+import { getClub } from '../../clubList/store'
 import { useSelector, useDispatch } from 'react-redux'
 
 // ** Reactstrap Imports
@@ -12,6 +13,7 @@ import { Row, Col, Alert } from 'reactstrap'
 // ** User View Components
 import UserTabs from './Tabs'
 import ClubInfoCard from './ClubInfoCard'
+
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
@@ -26,7 +28,7 @@ const ClubView = () => {
 
   // ** Get suer on mount
   useEffect(() => {
-    dispatch(getclub(id))
+    dispatch(getClub(id))
   }, [dispatch])
 
   const [active, setActive] = useState('1')
@@ -36,6 +38,7 @@ const ClubView = () => {
       setActive(tab)
     }
   }
+  //console.log("store==>", store.selectedClub)
 
   return store.selectedClub !== null && store.selectedClub !== undefined ? (
     <div className='app-club-view'>

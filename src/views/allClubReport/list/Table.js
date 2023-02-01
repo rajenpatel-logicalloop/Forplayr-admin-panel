@@ -8,7 +8,7 @@ import Sidebar from './Sidebar'
 import { columns } from './columns'
 
 // ** Store & Actions
-import { getClubData } from '../store'
+//import { getClubData } from '../store'
 import { useDispatch, useSelector } from 'react-redux'
 
 // ** Third Party Components
@@ -27,7 +27,7 @@ import {
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
-import { getAllClubData } from '../../clubList/store'
+import { getAllClubData, getClubData } from '../../clubList/store'
 
 // ** Table Header
 const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
@@ -206,11 +206,16 @@ const ClubsList = () => {
 
   //console.log("Allclubrepot-table==>", store?.data.length) 
 
+  const cardStyle = {
+    width:'30vm',
+    height : '100vm'
+  }
+
   return (
     <Fragment>
 
-      <Card className='overflow-hidden'>
-        <div className='react-dataTable'>
+      <Card className='overflow-hidden' >
+        <div className='react-dataTable' >
           <DataTable
             noHeader
             subHeader

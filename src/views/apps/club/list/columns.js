@@ -6,7 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getClub, deleteClub } from '../store'
+import { getClub, deleteClub } from '../../clubList/store'
 
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, Archive } from 'react-feather'
@@ -84,7 +84,7 @@ export const columns = [
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
-            to={`/apps/club/view/${row.id}`}
+            to={`/apps/clubList/view/${row.id}`}
             className='user_name text-truncate text-body'
             onClick={() => store.dispatch(getClub(row.id))}
           >
@@ -169,7 +169,7 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/apps/club/view/${row.id}`}
+              to={`/apps/clubList/view/${row.id}`}
               onClick={() => store.dispatch(getclub(row.id))}
             >
               <FileText size={14} className='me-50' />

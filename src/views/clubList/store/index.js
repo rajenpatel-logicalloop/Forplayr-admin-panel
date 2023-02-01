@@ -50,12 +50,10 @@ export const getClub = createAsyncThunk('appClubList/getClub', async (id) => {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
-    // params: {
-    //   include: "role,companies,companies.category,companies.vacancies,resume,resume.experience,resume.skills,resume.education,resume.achivements,resumeAppliedInCompanies,resumeAppliedInCompanies.vacancy"
-    // }
   }
   
   const response = await axios.get(`${API}club/fetch/${id}`, config)
+  //console.log('Club details==>', response.data.data)
   return response.data.data
 })
 
@@ -72,6 +70,64 @@ export const deleteClub = createAsyncThunk('appClubList/deleteClub', async (id, 
   await dispatch(getAllClubData())
   return id
 })
+
+export const blockClub = createAsyncThunk(
+  "appClubList/blockClub",
+  async (data, { dispatch, getState }) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        // Authorization: `Bearer ${authData.accessToken}`
+      },
+    };
+    await axios.patch(
+      `${API}admin/club/status/${data.id}`,
+      { status: data.status },
+      config
+    );
+    await dispatch(getClubData(getState().clubs.params));
+    await dispatch(getAllClubData());
+    return id;
+  }
+);
+
+export const approvedClub = createAsyncThunk(
+  "appClubList/approvedClub",
+  async (data, { dispatch, getState }) => {
+    console.log("Status==>", {API})
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        // Authorization: `Bearer ${authData.accessToken}`
+      },
+    };
+    await axios.patch(
+      `${API}admin/club/status/${data.id}`,
+      { status: data.status },
+      config
+    );
+    await dispatch(getClubData(getState().clubs.params));
+    await dispatch(getAllClubData());
+    return id;
+  }
+);
+
+export const permitClub = createAsyncThunk(
+  "appClubList/permitClub",
+  async (id, { dispatch, getState }) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        // Authorization: `Bearer ${authData.accessToken}`
+      },
+    };
+    console.log("accessToken==>", localStorage.getItem("accessToken"));
+    await axios.patch(`${API}admin/club/status/${id}`, config);
+    await dispatch(getClubData(getState().clubs.params));
+    await dispatch(getAllClubData());
+    return id;
+  }
+);
 
 export const appClubListSlice = createSlice({
   name: 'appClubList',
