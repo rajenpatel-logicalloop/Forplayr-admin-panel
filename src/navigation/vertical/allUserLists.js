@@ -15,5 +15,11 @@ export default [
         title: 'Club Lists',
         icon: <User size={20} />,
         navLink:'/apps/all-club-list'
+    },
+    {
+        id: 'allEditorialList',
+        title: 'Editorial Lists',
+        icon: <User size={20} />,
+        navLink: '/allEditorialReport/list/all-editorial-list'
     }
 ]

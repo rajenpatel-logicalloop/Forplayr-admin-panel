@@ -73,7 +73,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
   )
 }
 
-const UsersList = () => {
+const EditorialsList = () => {
   // ** Store Vars
   const dispatch = useDispatch()
   const store = useSelector(state => state.userList)
@@ -240,4 +240,4 @@ const UsersList = () => {
   )
 }
 
-export default UsersList
+export default EditorialsList

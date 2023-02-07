@@ -13,12 +13,12 @@ import { User, UserPlus, UserCheck, UserX } from 'react-feather'
 // ** Styles
 import '@styles/react/apps/app-users.scss'
 
-const UsersList = () => {
+const EditorialsList = () => {
   return (
-    <div className='app-user-list'>
+    <div className='app-editorial-list'>
       <Table />
     </div>
   )
 }
 
-export default UsersList
+export default EditorialsList

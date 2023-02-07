@@ -10,6 +10,7 @@
 //NEW SIDE OPTION ADDED
 import userLists from './userLists'
 import allUserLists from './allUserLists'
+//import allEditorialReport  from './allEditorialReport'
 
 // ** Merge & Export
 export default [
@@ -22,5 +23,6 @@ export default [
     // ...tables,
     // ...charts,
     // ...others,
-    ...allUserLists
+    ...allUserLists,
+    //...allEditorialReport
 ]

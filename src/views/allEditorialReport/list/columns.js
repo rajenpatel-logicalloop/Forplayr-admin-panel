@@ -6,7 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getUser, deleteUser, permitUser, blockUser } from '../store'
+import { getEditorial, deleteEditorial, permitEdiorial, blockEditorial, approvedEditorial } from '../store'
 
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, CheckSquare, Slash } from 'react-feather'
@@ -16,120 +16,88 @@ import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 
 // ** Renders Client Columns
 const renderClient = (row) => {
-  if (row?.avatar !== null) {
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.avatar}`} width='32' height='32' />
+  if (row?.shield !== null) {
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.shield}`} width='32' height='32' />
   } else {
     return (
       <Avatar
         initials
         className='me-1'
         color='light-primary'
-        content={row?.firstName}
+        content={row?.businessName}
       />
     )
   }
 }
 
-// ** Renders Role Columns
-const renderRole = row => {
-  const roleObj = {
-    user: {
-      class: 'text-primary',
-      icon: User
-    },
-    employer: {
-      class: 'text-success',
-      icon: Database
-    },
-    freelancer: {
-      class: 'text-info',
-      icon: Edit2
-    },
-    service: {
-      class: 'text-warning',
-      icon: Settings
-    },
-    admin: {
-      class: 'text-danger',
-      icon: Slack
-    }
-  }
-
-  const Icon = roleObj[row?.role[0]?.name] ? roleObj[row?.role[0]?.name]?.icon : Edit2
-
-  return (
-    <span className='text-truncate text-capitalize align-middle'>
-      <Icon size={18} className={`${roleObj[row?.role[0]?.name] ? roleObj[row?.role[0]?.name]?.class : ''} me-50`} />
-      {row?.role[0]?.name}
-    </span>
-  )
-}
-
 const statusObj = {
   pending: 'light-warning',
   active: 'light-success',
-  inactive: 'light-secondary'
+  banned: 'light-secondary',
+  inactive: 'light-secondary',
+  approved: 'light-success',
+  rejected:'light-secondary'
 }
 
 export const columns = [
   {
-    name: 'User',
+    name: 'Editorial',
     sortable: false,
     minWidth: '250px',
-    sortField: 'fullName',
-    selector: row => row?.firstName,
+    sortField: 'businessName',
+    selector: row => row?.businessName,
     cell: row => (
       <div className='d-flex justify-content-left align-items-center'>
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
             to={`/view/${row?._id}`}
-            className='user_name text-truncate text-body'
-            onClick={() => store.dispatch(getUser(row?._id))}
+            className='business_name text-truncate text-body'
+            onClick={() => store.dispatch(getEditorial(row?._id))}
           >
-            <span className='fw-bolder'>{row?.firstName} {row?.lastName}</span>
+            <span className='fw-bolder'>{row?.businessName}</span>
           </Link>
-          <small className='text-truncate text-muted mb-0'>{row?.emailAddress}</small>
+          <small className='text-truncate text-muted mb-0'>{row?.companyEmail}</small>
         </div>
       </div>
     )
   },
   {
-    name: 'Role',
+    name: 'CompanyPhoneNo',
     sortable: false,
     minWidth: '172px',
-    sortField: 'role',
-    selector: (row) => row?.role,
-    cell: (row) => renderRole(row)
+    sortField: 'companyPhoneNo',
+    selector: (row) => row?.companyPhoneNo,
+    cell: (row) => row?.companyPhoneNo //renderRole(row)
   },
   {
-    name: 'Login With',
-    minWidth: '138px',
+    name: 'City',
     sortable: false,
-    sortField: 'loginWith',
-    selector: row => row?.loginWith,
-    cell: row => <span className='text-capitalize'>{row?.loginWith}</span>
-  },
+    minWidth: '172px',
+    sortField: 'city',
+    selector: (row) => row?.city,
+    cell: (row) => row?.city
+  },            
   {
-    name: 'Gender',
-    minWidth: '230px',
+    name: 'Province',
     sortable: false,
-    sortField: 'gender',
-    selector: row => row?.gender,
-    cell: row => <span className='text-capitalize'>{row?.gender?.slice(0, 100)}</span>
+    minWidth: '172px',
+    sortField: 'province',
+    selector: (row) => row?.province?.name,
+    cell: (row) => row?.province?.name
   },
-  {
-    name: 'Permission',
-    minWidth: '138px',
-    sortable: false,
-    sortField: 'isPermited',
-    selector: row => row?.isPermited,
-    cell: row => (
-      <Badge className='text-capitalize' color={statusObj[row?.status ? 'active' : 'inactive']} pill>
-        {row?.status ? 'Allowed' : 'Not Allowed'}
-      </Badge>
-    )
-  },
+  // {
+  //   name: 'Banned',
+  //   minWidth: '138px',
+  //   sortable: false,
+  //   sortField: 'isPermited',
+  //   selector: row => row?.isBanned,
+  //   cell: row => (
+  //     <Badge className='text-capitalize' color={statusObj[row?.isBanned ? 'banned' : 'active']} pill>
+  //       {row?.isBanned ? 'Banned' : 'Active'}
+  //     </Badge>
+  //   )
+  // },
   {
     name: 'Status',
     minWidth: '138px',
@@ -139,14 +107,14 @@ export const columns = [
     cell: row => (
       <Badge 
         className='text-capitalize' 
-        color={statusObj[row?.status === "active" ? 'active' : row?.status === "deactive" ? 'inactive' : 'blocked']} 
+        color={statusObj[row?.status === "approved" ? 'approved' : row?.status === "refused" ? 'refused' : 'blocked']} 
         pill>
         {
-          row?.status === "active" ? 'active' : row?.status === "deactive" ? 'inactive' : 'blocked'
+          row?.status === "approved" ? 'approved' : row?.status === "refused" ? 'refused' : 'blocked'
         }
       </Badge>
     ) 
-  },
+  },      
   {
     name: 'Actions',
     minWidth: '100px',
@@ -160,8 +128,8 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/apps/all-user-list/view/${row?._id}`}
-              onClick={() => store.dispatch(getUser(row?._id))}
+              to={`/allClubReport/view/${row?._id}`}
+              onClick={() => store.dispatch(getEditorial(row?._id))}
             >
               <FileText size={14} className='me-50' />
               <span className='align-middle'>Details</span>
@@ -170,23 +138,38 @@ export const columns = [
               <Archive size={14} className='me-50' />
               <span className='align-middle'>Edit</span>
             </DropdownItem> */}
+
+            <DropdownItem
+              className='w-100'
+              onClick={e => {
+                e.preventDefault()
+                store.dispatch(approvedEditorial({
+                  id: row._id,
+                  status: row.status === "refused" ? "approved" : "refused"
+                }))
+              }}
+            >
+              <Slash size={14} className='me-50' />
+              <span className='align-middle'>{row.status === "refused" ? "Approved" : "Refused"}</span>
+            </DropdownItem> 
+
             <DropdownItem
               // tag='a'
               // href='/'
               className='w-100'
               onClick={e => {
                 e.preventDefault()
-                store.dispatch(deleteUser(row._id))
+                store.dispatch(deleteEditorial(row._id))
               }}
             >
               <Trash2 size={14} className='me-50' />
               <span className='align-middle'>Delete</span>
             </DropdownItem> 
-            <DropdownItem
+            {/* <DropdownItem
               className='w-100'
               onClick={e => {
                 e.preventDefault()
-                store.dispatch(blockUser({
+                store.dispatch(blockClub({
                   id: row._id,
                   status: row.status === "blocked" ? "active" : "blocked"
                 }))
@@ -194,12 +177,14 @@ export const columns = [
             >
               <Slash size={14} className='me-50' />
               <span className='align-middle'>{row.status === "blocked" ? "Unblock" : "Block"}</span>
-            </DropdownItem> 
-            {/*!row?.isPermited && */<DropdownItem
+            </DropdownItem>  */}
+
+            {/*!row?.isPermited && */
+            <DropdownItem
               className='w-100'
               onClick={e => {
                 e.preventDefault()
-                store.dispatch(permitUser(row._id))
+                store.dispatch(permitEdiorial(row._id))
               }}
             >
               <CheckSquare size={14} className='me-50' />
@@ -209,5 +194,5 @@ export const columns = [
         </UncontrolledDropdown>
       </div>
     )
-  }
+  }      
 ]
