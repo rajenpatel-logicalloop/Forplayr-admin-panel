@@ -74,9 +74,10 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
 }
 
 const EditorialsList = () => {
+  console.log("Editorial List==>");
   // ** Store Vars
   const dispatch = useDispatch()
-  const store = useSelector(state => state.userList)
+  const store = useSelector(state => state.editorialList)
 
   // ** States
   const [sort, setSort] = useState('desc')

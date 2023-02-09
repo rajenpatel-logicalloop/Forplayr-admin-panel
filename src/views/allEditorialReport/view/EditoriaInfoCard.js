@@ -28,17 +28,17 @@ const statusColors = {
   banned: 'light-secondary'
 }
 
-const ClubInfoCard = ({ selectedClub }) => {
+const EditorialInfoCard = ({ selectedEditorial }) => {
 
   // ** render user img
-  const renderUserImg = () => {
-    if (selectedClub !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.shield}` !== null) {
+  const renderEditorialImg = () => {
+    if (selectedEditorial !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}` !== null) {
       return (
         <img
           height='110'
           width='110'
-          alt='user-avatar'
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.shield}`}
+          alt='editorial-avatar'
+          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}`}
           className='img-fluid rounded mt-3 mb-2'
         />
       )
@@ -48,7 +48,7 @@ const ClubInfoCard = ({ selectedClub }) => {
           initials
           color={'light-primary'}
           className='rounded mt-3 mb-2'
-          content={selectedClub?.firstName}
+          content={selectedEditorial?.businessName}
           contentStyles={{
             borderRadius: 0,
             fontSize: 'calc(48px)',
@@ -70,10 +70,10 @@ const ClubInfoCard = ({ selectedClub }) => {
         <CardBody>
           <div className='club-avatar-section'>
             <div className='d-flex align-items-center flex-column'>
-              {renderUserImg()}
+              {renderEditorialImg()}
               <div className='d-flex flex-column align-items-center text-center'>
                 <div className='club-info'>
-                  <h4>{selectedClub?.businessName}</h4>
+                  <h4>{selectedEditorial?.businessName}</h4>
                   {/* {selectedClub !== null ? (
                     <Badge color={roleColors[selectedClub?.role?.name]} className='text-capitalize'>
                       {selectedClub?.role?.name}
@@ -105,19 +105,19 @@ const ClubInfoCard = ({ selectedClub }) => {
           </div> */}
           <h4 className='fw-bolder border-bottom pb-50 mb-1'>Details</h4>
           <div className='info-container'>
-            {selectedClub !== null ? (
+            {selectedEditorial !== null ? (
               <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Club Name : </span>
-                  <span>{selectedClub?.businessName}</span>
+                  <span className='fw-bolder me-25'>Editorial Name : </span>
+                  <span>{selectedEditorial?.businessName}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Email:</span>
-                  <span>{selectedClub?.companyEmail}</span>
+                  <span>{selectedEditorial?.companyEmail}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>PhoneNo : </span>
-                  <span>{selectedClub?.companyPhoneNo}</span>
+                  <span>{selectedEditorial?.companyPhoneNo}</span>
                   {/* <Badge 
                     className='text-capitalize' 
                     color={statusColors[selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'pending' : 'inactive']} 
@@ -127,23 +127,23 @@ const ClubInfoCard = ({ selectedClub }) => {
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Address : </span>
-                  <span>{selectedClub?.address.slice(0, 10)}</span>
+                  <span>{selectedEditorial?.address}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>City : </span>
-                  <span>{selectedClub?.city}</span>
+                  <span>{selectedEditorial?.city}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Province : </span>
-                  <span>{selectedClub?.province}</span>
+                  <span>{selectedEditorial?.province}</span>
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>Status:</span>
                   <Badge 
                     className='text-capitalize' 
-                    color={statusColors[selectedClub?.status === "active" ? 'active' : selectedClub?.status === "deactive" ? 'deactive' : 'inactive']} 
+                    color={statusColors[selectedEditorial?.status === "approved" ? 'approved' : selectedEditorial?.status === "refused" ? 'refused' : 'inactive']} 
                     pill>
-                    {selectedClub?.status === "active" ? 'active' : selectedClub?.status === "deactive" ? 'inactive' : 'blocked'}
+                    {selectedEditorial?.status === "approved" ? 'approved' : selectedEditorial?.status === "refused" ? 'refused' : 'inactive'}
                   </Badge>
                 </li>              
                 </ul>
@@ -155,4 +155,4 @@ const ClubInfoCard = ({ selectedClub }) => {
   )
 }
 
-export default ClubInfoCard
+export default EditorialInfoCard

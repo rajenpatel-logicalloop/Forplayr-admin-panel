@@ -19,6 +19,7 @@ export const getAllData = createAsyncThunk('appEditorialList/getAllData', async 
     }
   }
   const response = await axios.get(`${API}editorial/fetch`, config)
+  console.log("Response data==>", response.data.data);
   return response.data.data
 })
 

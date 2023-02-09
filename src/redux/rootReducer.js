@@ -15,7 +15,7 @@ import permissions from '@src/views/apps/roles-permissions/store'
 //API REDUCER USED FOR Forplayr
 import userList from '@src/views/userList/store'
 import clubList from '@src/views/clubList/store'
-import editorialsList  from '@src/views/allEditorialReport/store'
+import editorialList  from '@src/views/allEditorialReport/store'
 
 
 const rootReducer = {
@@ -35,7 +35,7 @@ const rootReducer = {
   //API REDUCER USED FOR Forplayr
   userList,
   clubList,
-  editorialsList,
+  editorialList,
 }
 
 export default rootReducer

@@ -20,6 +20,6 @@ export default [
         id: 'allEditorialList',
         title: 'Editorial Lists',
         icon: <User size={20} />,
-        navLink: '/allEditorialReport/list/all-editorial-list'
+        navLink: '/apps/all-editorial-list'
     }
 ]

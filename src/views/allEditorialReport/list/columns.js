@@ -16,8 +16,8 @@ import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 
 // ** Renders Client Columns
 const renderClient = (row) => {
-  if (row?.shield !== null) {
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.shield}`} width='32' height='32' />
+  if (row?.logo !== null) {
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.logo}`} width='32' height='32' />
   } else {
     return (
       <Avatar
@@ -51,7 +51,7 @@ export const columns = [
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
-            to={`/view/${row?._id}`}
+            to={`/apps/all-editorial-list/view/${row?._id}`}
             className='business_name text-truncate text-body'
             onClick={() => store.dispatch(getEditorial(row?._id))}
           >
@@ -128,7 +128,7 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/allClubReport/view/${row?._id}`}
+              to={`/apps/all-editorial-list/view/${row?._id}`}
               onClick={() => store.dispatch(getEditorial(row?._id))}
             >
               <FileText size={14} className='me-50' />
