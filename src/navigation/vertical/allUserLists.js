@@ -7,7 +7,7 @@ export default [
     },
     {
         id: 'allUserList',
-        title: 'All Users',
+        title: '  All Users',
         icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}} src={require('@src/assets/images/icons/user.png').default} alt="brand logo" />, //<User size={20} />,
         navLink: '/apps/all-user-list'
     },
