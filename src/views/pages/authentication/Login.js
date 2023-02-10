@@ -188,7 +188,8 @@ const Login = () => {
     <div className='auth-wrapper auth-cover'>
       <Row className='auth-inner m-0'>
         <Link className='brand-logo' to='/' onClick={e => e.preventDefault()} style={{display:'flex', alignItems:'center'}}>
-          <img style={{ height: '40px', width: '40px', borderRadius: '5px' }} src={require('@src/assets/images/logo/localskillsquare.png').default} alt="brand logo" />
+          {/* <img style={{ height: '40px', width: '40px', borderRadius: '5px' }} src={require('@src/assets/images/logo/localskillsquare.png').default} alt="brand logo" /> */}
+          <img style={{ height: '40px', width: '40px', borderRadius: '5px' }} src={require('@src/assets/images/logo/forplayrlogo.png').default} alt="brand logo" />
           <h2 className='brand-text text-primary ms-1'>Forplayr</h2>
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>

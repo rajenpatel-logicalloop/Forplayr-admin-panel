@@ -47,11 +47,11 @@ const ClubView = () => {
           <ClubInfoCard selectedClub={store.selectedClub} />
         </Col>
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs
+          {/* <UserTabs
             active={active}
             toggleTab={toggleTab}
             selectedClub={store.selectedClub}
-          />
+          /> */}
         </Col>
       </Row>
     </div>

@@ -44,11 +44,11 @@ const UserView = () => {
           <UserInfoCard selectedUser={store.selectedUser} />
         </Col>
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
-          <UserTabs
+          {/* <UserTabs
             active={active}
             toggleTab={toggleTab}
             selectedUser={store.selectedUser}
-          />
+          /> */}
         </Col>
       </Row>
     </div>

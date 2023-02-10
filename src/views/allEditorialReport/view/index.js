@@ -20,7 +20,7 @@ import '@styles/react/apps/app-users.scss'
 const EditorialView = () => {
   // ** Store Vars
   const store = useSelector(state => state.editorialList)
-  console.log("Club view store=>", store.selectedEditorial);
+  console.log("Editorial view store=>", store.selectedEditorial);
   const dispatch = useDispatch()
 
   // ** Hooks

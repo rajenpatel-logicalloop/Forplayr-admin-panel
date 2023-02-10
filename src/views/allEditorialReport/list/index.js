@@ -15,8 +15,8 @@ import '@styles/react/apps/app-users.scss'
 
 const EditorialsList = () => {
   return (
-    <div className='app-editorial-list'>
-      <Table />
+    <div className='app-editorial-list' >
+      <Table/>
     </div>
   )
 }

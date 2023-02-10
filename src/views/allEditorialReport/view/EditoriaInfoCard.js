@@ -1,78 +1,91 @@
 // ** React Imports
-import { Fragment } from 'react'
+import { Fragment } from "react";
 
 // ** Reactstrap Imports
-import { Card, CardBody, Badge } from 'reactstrap'
+import { Card, CardBody, Badge, Button } from "reactstrap";
 
 // ** Third Party Components
-import { Check, Briefcase } from 'react-feather'
+import { Check, Briefcase } from "react-feather";
+
+// ** Store & Actions
+import { store } from "@store/store";
+import {
+  getEditorial,
+  deleteEditorial,
+  permitEdiorial,
+  blockEditorial,
+  approvedEditorial,
+} from "../store";
 
 // ** Custom Components
-import Avatar from '@components/avatar'
+import Avatar from "@components/avatar";
 
 // ** Styles
-import '@styles/react/libs/react-select/_react-select.scss'
+import "@styles/react/libs/react-select/_react-select.scss";
 
 const roleColors = {
-  job_seeker: 'light-info',
-  employer: 'light-danger',
-  freelancer: 'light-warning',
-  service: 'light-success',
-  admin: 'light-primary'
-}
+  job_seeker: "light-info",
+  employer: "light-danger",
+  freelancer: "light-warning",
+  service: "light-success",
+  admin: "light-primary",
+};
 
 const statusColors = {
-  active: 'light-success',
-  pending: 'light-warning',
-  inactive: 'light-secondary',
-  banned: 'light-secondary'
-}
+  active: "light-success",
+  pending: "light-warning",
+  inactive: "light-secondary",
+  banned: "light-secondary",
+};
 
 const EditorialInfoCard = ({ selectedEditorial }) => {
-
   // ** render user img
   const renderEditorialImg = () => {
-    if (selectedEditorial !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}` !== null) {
+    if (
+      selectedEditorial !== null &&
+      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}` !==
+        null
+    ) {
       return (
         <img
-          height='110'
-          width='110'
-          alt='editorial-avatar'
+          height="110"
+          width="110"
+          alt="editorial-avatar"
           src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}`}
-          className='img-fluid rounded mt-3 mb-2'
+          className="img-fluid rounded mt-3 mb-2"
         />
-      )
+      );
     } else {
       return (
         <Avatar
           initials
-          color={'light-primary'}
-          className='rounded mt-3 mb-2'
+          color={"light-primary"}
+          className="rounded mt-3 mb-2"
           content={selectedEditorial?.businessName}
           contentStyles={{
             borderRadius: 0,
-            fontSize: 'calc(48px)',
-            width: '100%',
-            height: '100%'
+            fontSize: "calc(48px)",
+            width: "100%",
+            height: "100%",
           }}
           style={{
-            height: '110px',
-            width: '110px'
+            height: "110px",
+            width: "110px",
           }}
         />
-      )
+      );
     }
-  }
+  };
 
   return (
     <Fragment>
       <Card>
         <CardBody>
-          <div className='club-avatar-section'>
-            <div className='d-flex align-items-center flex-column'>
+          <div className="club-avatar-section">
+            <div className="d-flex align-items-center flex-column">
               {renderEditorialImg()}
-              <div className='d-flex flex-column align-items-center text-center'>
-                <div className='club-info'>
+              <div className="d-flex flex-column align-items-center text-center">
+                <div className="club-info">
                   <h4>{selectedEditorial?.businessName}</h4>
                   {/* {selectedClub !== null ? (
                     <Badge color={roleColors[selectedClub?.role?.name]} className='text-capitalize'>
@@ -103,20 +116,20 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
               </div>
             </div>
           </div> */}
-          <h4 className='fw-bolder border-bottom pb-50 mb-1'>Details</h4>
-          <div className='info-container'>
+          <h4 className="fw-bolder border-bottom pb-50 mb-1">Details</h4>
+          <div className="info-container">
             {selectedEditorial !== null ? (
-              <ul className='list-unstyled'>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Editorial Name : </span>
+              <ul className="list-unstyled">
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">Editorial Name : </span>
                   <span>{selectedEditorial?.businessName}</span>
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Email:</span>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">Email:</span>
                   <span>{selectedEditorial?.companyEmail}</span>
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>PhoneNo : </span>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">PhoneNo : </span>
                   <span>{selectedEditorial?.companyPhoneNo}</span>
                   {/* <Badge 
                     className='text-capitalize' 
@@ -125,34 +138,79 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                     {selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'inactive' : 'blocked'}
                   </Badge> */}
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Address : </span>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">Address : </span>
                   <span>{selectedEditorial?.address}</span>
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>City : </span>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">City : </span>
                   <span>{selectedEditorial?.city}</span>
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Province : </span>
-                  <span>{selectedEditorial?.province}</span>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">Province : </span>
+                  <span>{selectedEditorial?.province?.name}</span>
                 </li>
-                <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Status:</span>
-                  <Badge 
-                    className='text-capitalize' 
-                    color={statusColors[selectedEditorial?.status === "approved" ? 'approved' : selectedEditorial?.status === "refused" ? 'refused' : 'inactive']} 
-                    pill>
-                    {selectedEditorial?.status === "approved" ? 'approved' : selectedEditorial?.status === "refused" ? 'refused' : 'inactive'}
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">Status : </span>
+                  <Badge
+                    className="text-capitalize"
+                    color={
+                      statusColors[
+                        selectedEditorial?.status === "approved"
+                          ? "approved"
+                          : selectedEditorial?.status === "refused"
+                          ? "refused"
+                          : "inactive"
+                      ]
+                    }
+                    pill
+                  >
+                    {selectedEditorial?.status === "approved"
+                      ? "approved"
+                      : selectedEditorial?.status === "refused"
+                      ? "refused"
+                      : "inactive"}
                   </Badge>
-                </li>              
-                </ul>
+                </li>
+                <li>
+                <span className="fw-bolder me-25"> 
+                    <Button onClick={(e) => {
+                        console.log("On click button==>", selectedEditorial?._id) ;
+                        e.preventDefault();
+                        store.dispatch(
+                          approvedEditorial({
+                            id: selectedEditorial?._id,
+                            status:
+                              selectedEditorial.status === "refused" ? "approved" : "refused",
+                          })
+                        );
+                      }}
+                    >
+                      {selectedEditorial?.status === "approved"
+                        ? "refused"
+                        : selectedEditorial?.status === "refused"
+                        ? "approved"
+                        : "inactive"}
+                    </Button>
+                  </span>
+                  <span>
+                    <Button onClick={(e) => {
+                        console.log("On Delete button click==>", selectedEditorial?._id) ;
+                        e.preventDefault();
+                        store.dispatch(
+                          deleteEditorial(selectedEditorial?._id)
+                        );
+                      }}
+                    >Delete</Button>
+                  </span>                    
+                </li>
+              </ul>
             ) : null}
           </div>
         </CardBody>
       </Card>
     </Fragment>
-  )
-}
+  );
+};
 
-export default EditorialInfoCard
+export default EditorialInfoCard;

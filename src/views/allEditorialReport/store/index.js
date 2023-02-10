@@ -99,9 +99,9 @@ export const permitEdiorial = createAsyncThunk('appEditorialList/permitEditorial
 })
 
 export const approvedEditorial = createAsyncThunk(
-  "appClubList/approvedClub",
+  "appEditorialList/approvedEditorial",
   async (data, { dispatch, getState }) => {
-    console.log("Status==>", {API})
+    console.log("editorial approved status==>", `${API}admin/editorial/status/${data.id}`)
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -109,12 +109,12 @@ export const approvedEditorial = createAsyncThunk(
       },
     };
     await axios.patch(
-      `${API}admin/club/status/${data.id}`,
+      `${API}admin/editorial/status/${data.id}`,
       { status: data.status },
       config
     );
-    await dispatch(getClubData(getState().clubs.params));
-    await dispatch(getAllClubData());
+    await dispatch(getData(getState().editorials.params));
+    await dispatch(getAllData());
     return id;
   }
 );

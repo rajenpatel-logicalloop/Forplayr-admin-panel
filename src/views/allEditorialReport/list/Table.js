@@ -207,8 +207,8 @@ const EditorialsList = () => {
   return (
     <Fragment>
 
-      <Card className='overflow-hidden'>
-        <div className='react-dataTable'>
+      <Card className='overflow-hidden'  >
+        <div className='react-dataTable' >
           <DataTable
             noHeader
             subHeader
@@ -232,6 +232,7 @@ const EditorialsList = () => {
                 toggleSidebar={toggleSidebar}
               />
             }
+            
           />
         </div>
       </Card>

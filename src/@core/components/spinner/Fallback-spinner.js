@@ -1,5 +1,6 @@
 // ** Logo
-import logo from '@src/assets/images/logo/localskillsquare.png'
+//import logo from '@src/assets/images/logo/localskillsquare.png'
+import logo from '@src/assets/images/logo/forplayrlogo.png'
 
 const SpinnerComponent = () => {
   return (
