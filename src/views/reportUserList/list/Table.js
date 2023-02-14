@@ -35,8 +35,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
       <Row>
         <Col xl='6' className='d-flex align-items-center p-0'>
           <div className='d-flex align-items-center w-100'>
-            {/* <label htmlFor='rows-per-page'>Show</label> */}
-            <label htmlFor='rows-per-page'>Spettacolo</label>
+            <label htmlFor='rows-per-page'>Show</label>
             <Input
               className='mx-50'
               type='select'
@@ -49,8 +48,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
               <option value='25'>25</option>
               <option value='50'>50</option>
             </Input>
-            {/* <label htmlFor='rows-per-page'>Entries</label> */}
-            <label htmlFor='rows-per-page'>Inserimenti</label>
+            <label htmlFor='rows-per-page'>Entries</label>
           </div>
         </Col>
         <Col
@@ -58,12 +56,9 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
           className='d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1'
         >
           <div className='d-flex align-items-center mb-sm-0 mb-1 me-1'>
-            {/* <label className='mb-0' htmlFor='search-invoice'>
-              Search:
-            </label> */}
             <label className='mb-0' htmlFor='search-invoice'>
-              Ricerca:
-            </label>            
+              Search:
+            </label>
             <Input
               id='search-invoice'
               className='ms-50 w-100'
@@ -78,10 +73,11 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
   )
 }
 
-const UsersList = () => {
+const EditorialsList = () => {
+  console.log("Editorial List==>");
   // ** Store Vars
   const dispatch = useDispatch()
-  const store = useSelector(state => state.userList)
+  const store = useSelector(state => state.editorialList)
 
   // ** States
   const [sort, setSort] = useState('desc')
@@ -211,8 +207,8 @@ const UsersList = () => {
   return (
     <Fragment>
 
-      <Card className='overflow-hidden'>
-        <div className='react-dataTable'>
+      <Card className='overflow-hidden'  >
+        <div className='react-dataTable' >
           <DataTable
             noHeader
             subHeader
@@ -236,6 +232,7 @@ const UsersList = () => {
                 toggleSidebar={toggleSidebar}
               />
             }
+            
           />
         </div>
       </Card>
@@ -245,4 +242,4 @@ const UsersList = () => {
   )
 }
 
-export default UsersList
+export default EditorialsList

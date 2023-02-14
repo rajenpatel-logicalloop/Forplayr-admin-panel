@@ -2,11 +2,11 @@ import { User } from "react-feather"
 
 export default [
     {
-        header: 'Details'
+        header: 'Dettagli'
     },
     {
         id: 'userList',
-        title: 'Users',
+        title: 'Utentie',
         icon: <User size={20} />,
         navLink: '/apps/userList'
     }

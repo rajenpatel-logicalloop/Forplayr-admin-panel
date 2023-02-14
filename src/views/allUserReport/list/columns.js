@@ -73,7 +73,7 @@ const statusObj = {
 
 export const columns = [
   {
-    name: 'User',
+    name: 'utente',
     sortable: false,
     minWidth: '250px',
     sortField: 'fullName',
@@ -95,7 +95,7 @@ export const columns = [
     )
   },
   {
-    name: 'Role',
+    name: 'Ruolo', //Role
     sortable: false,
     minWidth: '172px',
     sortField: 'role',
@@ -103,7 +103,7 @@ export const columns = [
     cell: (row) => renderRole(row)
   },
   {
-    name: 'Login With',
+    name: 'Entra con', //'Login With',
     minWidth: '138px',
     sortable: false,
     sortField: 'loginWith',
@@ -111,7 +111,7 @@ export const columns = [
     cell: row => <span className='text-capitalize'>{row?.loginWith}</span>
   },
   {
-    name: 'Gender',
+    name: 'Genere',   //'Gender',
     minWidth: '230px',
     sortable: false,
     sortField: 'gender',
@@ -119,7 +119,7 @@ export const columns = [
     cell: row => <span className='text-capitalize'>{row?.gender?.slice(0, 100)}</span>
   },
   {
-    name: 'Permission',
+    name:  'Autorizzazione',  //'Permission',
     minWidth: '138px',
     sortable: false,
     sortField: 'isPermited',
@@ -131,7 +131,7 @@ export const columns = [
     )
   },
   {
-    name: 'Status',
+    name: 'Stato', //'Status',
     minWidth: '138px',
     sortable: false,
     sortField: 'status',
@@ -148,7 +148,7 @@ export const columns = [
     ) 
   },
   {
-    name: 'Actions',
+    name: 'Azioni',  //'Actions',
     minWidth: '100px',
     cell: row => (
       <div className='column-action'>
@@ -164,7 +164,8 @@ export const columns = [
               onClick={() => store.dispatch(getUser(row?._id))}
             >
               <FileText size={14} className='me-50' />
-              <span className='align-middle'>Details</span>
+              {/* /<span className='align-middle'>Details</span> */}
+              <span className='align-middle'>Dettagli</span>
             </DropdownItem>
             {/* <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
               <Archive size={14} className='me-50' />
@@ -180,7 +181,8 @@ export const columns = [
               }}
             >
               <Trash2 size={14} className='me-50' />
-              <span className='align-middle'>Delete</span>
+              {/* <span className='align-middle'>Delete</span> */}
+              <span className='align-middle'>Eliminare</span>
             </DropdownItem> 
             <DropdownItem
               className='w-100'

@@ -5,7 +5,7 @@ import axios from 'axios'
 import API from '../../../configs/api'
 const authData = JSON.parse(localStorage.getItem("userData"))
 
-export const getAllData = createAsyncThunk('appUserList/getAllData', async () => {
+export const getAllData = createAsyncThunk('appReportUserList/getAllData', async () => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -15,19 +15,20 @@ export const getAllData = createAsyncThunk('appUserList/getAllData', async () =>
       sort: "updatedAt",
       order: "desc",
       page: 1,
-      limit: 10
+      limit: 10,
+      report: 'user'
     }
   }
-  const response = await axios.get(`${API}user/fetch`, config)
+  const response = await axios.get(`${API}report/fetch`, config)
+  console.log("Response data==>", response.data.data);
   return response.data.data
 })
 
-export const getData = createAsyncThunk('appUserList/getData', async (params) => {
+export const getData = createAsyncThunk('appReportList/getData', async (params) => {
   console.log("Params==>", params.q)
   const config = {
     headers: {
       //Authorization: `Bearer ${authData.accessToken}`
-      // Authorization: `Bearer ${localStorage.getItem('token')}`
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
     },
     params: {
@@ -35,10 +36,11 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
       order: params.sort,
       page: params.page,
       limit: params.perPage,
-      name: params.q,
+      report: 'user',
+      search:  params.q
     }
   }
-  const response = await axios.get(`${API}user/fetch`, config)
+  const response = await axios.get(`${API}report/fetch`, config)
   return {
     params,
     data: response.data.data,
@@ -46,51 +48,45 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
   }
 })
 
-export const getUser = createAsyncThunk('appUserList/getUser', async (id) => {
+export const getReport = createAsyncThunk('appReportList/getReport', async (id) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      // Authorization: `Bearer ${localStorage.getItem('token')}`
       //Authorization: `Bearer ${authData.accessToken}`
     }
-    
-    // params: {
-    //   include: "role,companies,companies.category,companies.vacancies,resume,resume.experience,resume.skills,resume.education,resume.achivements,resumeAppliedInCompanies,resumeAppliedInCompanies.vacancy"
-    // }
   }
-  //console.log(authData.accessToken)
-  const response = await axios.get(`${API}user/fetch/${id}`, config)
+  const response = await axios.get(`${API}report/fetch/${id}`, config)
   return response.data.data
 })
 
-export const addUser = createAsyncThunk('appUserList/addUser', async (user, { dispatch, getState }) => {
+export const addReport = createAsyncThunk('appReportList/addReport', async (report, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }  
-  await axios.post('/apps/users/add-user', user, config)
-  await dispatch(getData(getState().users.params))
+  await axios.post('/apps/reports/add-report', report, config)
+  await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
-  return user
+  return report
 })
 
-export const deleteUser = createAsyncThunk('appUserList/deleteUser', async (id, { dispatch, getState }) => {
+export const deleteReport = createAsyncThunk('appReportList/deleteReport', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.delete(`${API}admin/user/delete/${id}`, config)
-  await dispatch(getData(getState().users.params))
+  await axios.delete(`${API}admin/report/delete/${id}`, config)
+  await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
   return id
 })
 
 console.log(localStorage.getItem('accessToken'), "accessToken")
-export const permitUser = createAsyncThunk('appUserList/permitUser', async (id, { dispatch, getState }) => {
+export const permitReport = createAsyncThunk('appReportList/permitReport', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -98,13 +94,34 @@ export const permitUser = createAsyncThunk('appUserList/permitUser', async (id, 
     }
   }   
   console.log("accessToken==>", localStorage.getItem('accessToken'))
-  await axios.patch(`${API}admin/permit-user/${id}`, config)
+  await axios.patch(`${API}admin/report/status/${id}`, config)
   //await dispatch(getData(getState().users.params))
   //await dispatch(getAllData())
   return id
 })
 
-export const blockUser = createAsyncThunk('appUserList/blockUser', async (data, { dispatch, getState }) => {
+export const approvedReport = createAsyncThunk(
+  "appReportList/approvedReport",
+  async (data, { dispatch, getState }) => {
+    
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        // Authorization: `Bearer ${authData.accessToken}`
+      },
+    };
+    await axios.patch(
+      `${API}admin/report/status/${data.id}`,
+      { status: data.status },
+      config
+    );
+    await dispatch(getData(getState().reports.params));
+    await dispatch(getAllData());
+    return id;
+  }
+);
+
+export const blockReport = createAsyncThunk('appReportList/blockReport', async (data, { dispatch, getState }) => {
   const config = {
     headers: {
       //Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -112,20 +129,20 @@ export const blockUser = createAsyncThunk('appUserList/blockUser', async (data, 
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.patch(`${API}admin/user/status/${data.id}`, { status: data.status }, config)
-  await dispatch(getData(getState().users.params))
+  await axios.patch(`${API}admin/report/status/${data.id}`, { status: data.status }, config)
+  await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
   return id
 })
 
-export const appUserListSlice = createSlice({
-  name: 'appUserList',
+export const appReportListSlice = createSlice({
+  name: 'appReportList',
   initialState: {
     data: [],
     total: 1,
     params: {},
     allData: [],
-    selectedUser: null
+    selectedReport: null
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -138,10 +155,10 @@ export const appUserListSlice = createSlice({
         state.params = action.payload.params
         state.total = action.payload.totalPages
       })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.selectedUser = action.payload
+      .addCase(getReport.fulfilled, (state, action) => {
+        state.selectedEditorial = action.payload
       })
   }
 })
 
-export default appUserListSlice.reducer
+export default appReportListSlice.reducer

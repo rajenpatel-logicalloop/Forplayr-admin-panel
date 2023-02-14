@@ -35,7 +35,7 @@ export const getData = createAsyncThunk('appEditorialList/getData', async (param
       order: params.sort,
       page: params.page,
       limit: params.perPage,
-      search:  params.q
+      businessName:  params.q
     }
   }
   const response = await axios.get(`${API}editorial/fetch`, config)

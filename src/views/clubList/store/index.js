@@ -24,6 +24,7 @@ export const getAllClubData = createAsyncThunk('appClubList/getAllClubData', asy
 })
 
 export const getClubData = createAsyncThunk('appClubList/getClubData', async (params) => {
+  console.log("search Params==>", params.q);
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +34,8 @@ export const getClubData = createAsyncThunk('appClubList/getClubData', async (pa
       sort: "updatedAt",
       order: params.sort,
       page: params.page,
-      limit: params.perPage      
+      limit: params.perPage,
+      businessName: params.q,    
     }
   }
   const response = await axios.get(`${API}club/fetch`, config)

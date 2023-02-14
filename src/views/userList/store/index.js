@@ -33,7 +33,7 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
       order: params.sort,
       page: params.page,
       limit: params.perPage,
-      search: params.q
+      name: params.q
     }
   }
   const response = await axios.get(`${API}user/fetch`, config)
