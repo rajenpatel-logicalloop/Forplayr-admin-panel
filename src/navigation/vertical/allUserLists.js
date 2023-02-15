@@ -1,9 +1,13 @@
 import { User } from "react-feather"
 //import { Club } from "../../assets/images/icons/Club.png"
 
+import { convertLang, Title } from  '../../utility/Utils'
+
 export default [
     {
-        header: 'Dettagli'
+        
+        header: 'Detail', //<Title str="Detail"/> //'Detail'
+        //header: <text>{{ $t("Detail") }}</text>
     },
     {
         id: 'allUserList',

@@ -182,5 +182,13 @@
   "OffCanvas": "OffCanvas",
   "Permissions": "Permissions",
   "Modal Examples": "Modal Examples",
-  "Roles & Permissions": "Roles & Permissions"
+  "Roles & Permissions": "Roles & Permissions",
+  "Login With":"Login With",
+  "Gender":"Gender",
+  "Status":"Status",
+  "Delete":"Delet",
+  "Block":"Block",
+  "Unblock":"Unblock",
+  "Allow":"Allow",
+  "Disallow":"Disallow"
 }

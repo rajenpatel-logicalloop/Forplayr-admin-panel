@@ -59,6 +59,18 @@ const I18nExtension = () => {
                     type='radio'
                     id='radio-de'
                     name='i18n-lang-radio'
+                    checked={i18n.language === 'it'}
+                    onChange={() => i18n.changeLanguage('it')}
+                  />
+                  <Label className='form-check-label' for='radio-de'>
+                    Italy
+                  </Label>
+                </div>                
+                <div className='form-check mb-1'>
+                  <Input
+                    type='radio'
+                    id='radio-de'
+                    name='i18n-lang-radio'
                     checked={i18n.language === 'de'}
                     onChange={() => i18n.changeLanguage('de')}
                   />

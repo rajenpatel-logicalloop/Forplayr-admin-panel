@@ -53,7 +53,8 @@ const languageOptions = [
   { value: 'spanish', label: 'Spanish' },
   { value: 'french', label: 'French' },
   { value: 'german', label: 'German' },
-  { value: 'dutch', label: 'Dutch' }
+  { value: 'dutch', label: 'Dutch' },
+  { value: 'italy', label: 'Italy'}
 ]
 
 const MySwal = withReactContent(Swal)

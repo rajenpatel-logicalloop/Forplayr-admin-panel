@@ -27,6 +27,8 @@ import {
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
+import { convertLang, Title } from '../../../utility/Utils'
+
 
 // ** Table Header
 const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
@@ -36,7 +38,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
         <Col xl='6' className='d-flex align-items-center p-0'>
           <div className='d-flex align-items-center w-100'>
             {/* <label htmlFor='rows-per-page'>Show</label> */}
-            <label htmlFor='rows-per-page'>Spettacolo</label>
+            <label htmlFor='rows-per-page'>{convertLang('show')}</label>
             <Input
               className='mx-50'
               type='select'
@@ -50,7 +52,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
               <option value='50'>50</option>
             </Input>
             {/* <label htmlFor='rows-per-page'>Entries</label> */}
-            <label htmlFor='rows-per-page'>Inserimenti</label>
+            <label htmlFor='rows-per-page'>{convertLang('entries')}</label>
           </div>
         </Col>
         <Col
@@ -62,7 +64,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
               Search:
             </label> */}
             <label className='mb-0' htmlFor='search-invoice'>
-              Ricerca:
+            {convertLang('Search')}
             </label>            
             <Input
               id='search-invoice'

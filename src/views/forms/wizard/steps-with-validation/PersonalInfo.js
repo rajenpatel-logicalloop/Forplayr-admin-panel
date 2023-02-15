@@ -58,7 +58,8 @@ const PersonalInfo = ({ stepper }) => {
     { value: 'French', label: 'French' },
     { value: 'Spanish', label: 'Spanish' },
     { value: 'Italian', label: 'Italian' },
-    { value: 'Japanese', label: 'Japanese' }
+    { value: 'Japanese', label: 'Japanese' },
+    { value: 'Italy', label: 'Italy'}
   ]
 
   return (

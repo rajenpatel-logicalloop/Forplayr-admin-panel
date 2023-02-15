@@ -1,4 +1,5 @@
 import { DefaultRoute } from '../router/routes'
+import { useTranslation } from 'react-i18next'
 
 // ** Checks if an object is empty (returns boolean)
 export const isObjEmpty = obj => Object.keys(obj).length === 0
@@ -79,3 +80,12 @@ export const selectThemeColors = theme => ({
     neutral30: '#ededed' // for input hover border-color
   }
 })
+
+export const convertLang = (str) => {
+  const { t } = useTranslation()
+  return  t(str) 
+}
+
+export const Title = ({str}) => {
+  return convertLang(str)
+}

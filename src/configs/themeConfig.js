@@ -5,7 +5,8 @@ const themeConfig = {
   app: {
     appName: 'Forplayr',
     // appLogoImage: require('@src/assets/images/logo/localskillsquare.png').default
-    appLogoImage: require('@src/assets/images/logo/forplayrlogo.png').default
+    appLogoImage: require('@src/assets/images/logo/forplayrlogo.png').default,
+    appLanguage: 'it'
   },
   layout: {
     isRTL: false,
