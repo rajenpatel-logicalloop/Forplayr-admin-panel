@@ -28,6 +28,8 @@ import {
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 import { getAllClubData, getClubData } from '../../clubList/store'
+import { Title } from '../../../utility/Utils'
+
 
 // ** Table Header
 const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
@@ -36,7 +38,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
       <Row>
         <Col xl='6' className='d-flex align-items-center p-0'>
           <div className='d-flex align-items-center w-100'>
-            <label htmlFor='rows-per-page'>Show</label>
+            <label htmlFor='rows-per-page'>{<Title str="show" />}</label>
             <Input
               className='mx-50'
               type='select'
@@ -49,7 +51,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
               <option value='25'>25</option>
               <option value='50'>50</option>
             </Input>
-            <label htmlFor='rows-per-page'>Entries</label>
+            <label htmlFor='rows-per-page'>{<Title str="entries" />}</label>
           </div>
         </Col>
         <Col
@@ -58,7 +60,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
         >
           <div className='d-flex align-items-center mb-sm-0 mb-1 me-1'>
             <label className='mb-0' htmlFor='search-invoice'>
-              Search:
+              {<Title str="Search" />}:
             </label>
             <Input
               id='search-invoice'

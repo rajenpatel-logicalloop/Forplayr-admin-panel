@@ -16,6 +16,7 @@ import EditoriaInfoCard from './EditoriaInfoCard'
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
+import { Title } from '../../../utility/Utils'
 
 const EditorialView = () => {
   // ** Store Vars
@@ -57,9 +58,9 @@ const EditorialView = () => {
     </div>
   ) : (
     <Alert color='danger'>
-      <h4 className='alert-heading'>Editorial not found</h4>
+      <h4 className='alert-heading'>{<Title str='Editorial' />} {<Title str='notfound' /> }</h4>
       <div className='alert-body'>
-        Editorial with id: {id} doesn't exist. Check list of all Editorials: <Link to='/apps/all-editorial-list'>All Editorials List</Link>
+        {<Title str='Editorialwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} { <Title str= 'Editorial' />}: <Link to='/apps/all-editorial-list'>{<Title str='All' />} {<Title str='Editorial' />} {<Title str='List' />}</Link>
       </div>
     </Alert>
   )

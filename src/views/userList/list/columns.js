@@ -15,6 +15,8 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import moment from 'moment'
 
+import { convertLang, Title } from '../../../utility/Utils'
+
 // ** Renders Client Columns
 const renderClient = (row) => {
   if (row?.avatar !== null) {
@@ -87,7 +89,7 @@ const age = row => {
 
 export const columns = [
   {
-    name: 'User',
+    name: <Title str='User' />, //'User',
     sortable: false,
     minWidth: '250px',
     sortField: 'fullName',
@@ -109,7 +111,7 @@ export const columns = [
     )
   },
   {
-    name: 'Role',
+    name: <Title str='Roles' />, //'Role',
     sortable: false,
     minWidth: '172px',
     sortField: 'role',
@@ -117,7 +119,7 @@ export const columns = [
     cell: (row) => renderRole(row)
   },
   {
-    name: 'Login With',
+    name: <Title str='Login With' />, //'Login With',
     minWidth: '138px',
     sortable: false,
     sortField: 'loginWith',
@@ -125,7 +127,7 @@ export const columns = [
     cell: row => <span className='text-capitalize'>{row?.loginWith}</span>
   },
   {
-    name: 'Gender',
+    name: <Title str='Gender' />, //'Gender',
     minWidth: '230px',
     sortable: false,
     sortField: 'gender',
@@ -133,7 +135,7 @@ export const columns = [
     cell: row => <span className='text-capitalize'>{row?.gender?.slice(0, 100)}</span>
   },
   {
-    name: 'Minor',
+    name: <Title str='Minor' />, //'Minor',
     minWidth: '230px',
     sortable: false,
     sortField: 'gender',
@@ -141,7 +143,7 @@ export const columns = [
     cell: row => age(row)
   },
   {
-    name: 'Status',
+    name: <Title str='Status' />, //'Status',
     minWidth: '138px',
     sortable: false,
     sortField: 'status',
@@ -153,7 +155,7 @@ export const columns = [
     )
   },
   {
-    name: 'Actions',
+    name: <Title str='Actions' />, //'Actions',
     minWidth: '100px',
     cell: row => (
       <div className='column-action'>
@@ -169,7 +171,7 @@ export const columns = [
               onClick={() => store.dispatch(getUser(row?._id))}
             >
               <FileText size={14} className='me-50' />
-              <span className='align-middle'>Details</span>
+              <span className='align-middle'>{<Title str='Details' />}</span>
             </DropdownItem>
             {/* <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
               <Archive size={14} className='me-50' />
@@ -185,7 +187,7 @@ export const columns = [
               }}
             >
               <Trash2 size={14} className='me-50' />
-              <span className='align-middle'>Delete</span>
+              <span className='align-middle'>{<Title str='Delete' />}</span>
             </DropdownItem> 
           </DropdownMenu>
         </UncontrolledDropdown>

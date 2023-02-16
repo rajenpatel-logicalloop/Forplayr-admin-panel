@@ -12,6 +12,7 @@ import Avatar from '@components/avatar'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
+import { Title } from '../../../utility/Utils'
 
 const roleColors = {
   job_seeker: 'light-info',
@@ -22,10 +23,12 @@ const roleColors = {
 }
 
 const statusColors = {
-  active: 'light-success',
+  actived: 'light-success',
   pending: 'light-warning',
   inactive: 'light-secondary',
-  banned: 'light-secondary'
+  banned: 'light-secondary',
+  refused: 'light-secondary',
+  approved: 'light-success'
 }
 
 const ClubInfoCard = ({ selectedClub }) => {
@@ -103,20 +106,20 @@ const ClubInfoCard = ({ selectedClub }) => {
               </div>
             </div>
           </div> */}
-          <h4 className='fw-bolder border-bottom pb-50 mb-1'>Details</h4>
+          <h4 className='fw-bolder border-bottom pb-50 mb-1'>{<Title str='Details' />}</h4>
           <div className='info-container'>
             {selectedClub !== null ? (
               <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Club Name : </span>
+                  <span className='fw-bolder me-25'>{<Title str='Name'/>} : </span>
                   <span>{selectedClub?.businessName}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Email:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Email' />} :</span>
                   <span>{selectedClub?.companyEmail}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>PhoneNo : </span>
+                  <span className='fw-bolder me-25'>{<Title str='PhoneNo' />} : </span>
                   <span>{selectedClub?.companyPhoneNo}</span>
                   {/* <Badge 
                     className='text-capitalize' 
@@ -126,24 +129,24 @@ const ClubInfoCard = ({ selectedClub }) => {
                   </Badge> */}
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Address : </span>
+                  <span className='fw-bolder me-25'>{<Title str='Address' />} : </span>
                   <span>{selectedClub?.address.slice(0, 10)}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>City : </span>
+                  <span className='fw-bolder me-25'>{<Title str='City' />} : </span>
                   <span>{selectedClub?.city}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Province : </span>
+                  <span className='fw-bolder me-25'>{<Title str='Province' />} : </span>
                   <span>{selectedClub?.province}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Status:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Status' />}:</span>
                   <Badge 
                     className='text-capitalize' 
-                    color={statusColors[selectedClub?.status === "active" ? 'active' : selectedClub?.status === "deactive" ? 'deactive' : 'inactive']} 
+                    color={statusColors[selectedClub?.status === "approved" ? 'approved' : selectedClub?.status === "refused" ? 'refused' : 'inactive']} 
                     pill>
-                    {selectedClub?.status === "active" ? 'active' : selectedClub?.status === "deactive" ? 'inactive' : 'blocked'}
+                    {<Title str={selectedClub?.status === "approved" ? 'approved' : selectedClub?.status === "refused" ? 'refused' : 'block'} />}
                   </Badge>
                 </li>              
                 </ul>

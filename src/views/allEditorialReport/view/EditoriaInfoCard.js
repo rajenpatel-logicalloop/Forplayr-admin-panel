@@ -22,6 +22,7 @@ import Avatar from "@components/avatar";
 
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
+import { Title } from "../../../utility/Utils";
 
 const roleColors = {
   job_seeker: "light-info",
@@ -116,20 +117,20 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
               </div>
             </div>
           </div> */}
-          <h4 className="fw-bolder border-bottom pb-50 mb-1">Details</h4>
+          <h4 className="fw-bolder border-bottom pb-50 mb-1">{<Title str='Details' />}</h4>
           <div className="info-container">
             {selectedEditorial !== null ? (
               <ul className="list-unstyled">
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Editorial Name : </span>
+                  <span className="fw-bolder me-25">{<Title str='Name' />} : </span>
                   <span>{selectedEditorial?.businessName}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Email:</span>
+                  <span className="fw-bolder me-25">{<Title str='Email' />} : </span>
                   <span>{selectedEditorial?.companyEmail}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">PhoneNo : </span>
+                  <span className="fw-bolder me-25">{<Title str='PhoneNo' />} : </span>
                   <span>{selectedEditorial?.companyPhoneNo}</span>
                   {/* <Badge 
                     className='text-capitalize' 
@@ -139,19 +140,19 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                   </Badge> */}
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Address : </span>
+                  <span className="fw-bolder me-25">{<Title str='Address' />} : </span>
                   <span>{selectedEditorial?.address}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">City : </span>
+                  <span className="fw-bolder me-25">{<Title str='City'/>} : </span>
                   <span>{selectedEditorial?.city}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Province : </span>
+                  <span className="fw-bolder me-25">{<Title str='Province' />} : </span>
                   <span>{selectedEditorial?.province?.name}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Status : </span>
+                  <span className="fw-bolder me-25">{<Title str='Status' /> } : </span>
                   <Badge
                     className="text-capitalize"
                     color={
@@ -165,11 +166,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                     }
                     pill
                   >
-                    {selectedEditorial?.status === "approved"
-                      ? "approved"
-                      : selectedEditorial?.status === "refused"
-                      ? "refused"
-                      : "inactive"}
+                    {<Title str={selectedEditorial?.status === "approved" ? "approved" : selectedEditorial?.status === "refused" ? "refused" : "inactive"} />}
                   </Badge>
                 </li>
                 <li>
@@ -186,11 +183,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                         );
                       }}
                     >
-                      {selectedEditorial?.status === "approved"
-                        ? "refused"
-                        : selectedEditorial?.status === "refused"
-                        ? "approved"
-                        : "inactive"}
+                      {<Title str={selectedEditorial?.status === "approved" ? "refused" : selectedEditorial?.status === "refused" ? "approved" : "inactive"} />}
                     </Button>
                   </span>
                   <span>
@@ -201,7 +194,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                           deleteEditorial(selectedEditorial?._id)
                         );
                       }}
-                    >Delete</Button>
+                    >{<Title str='Delete' />}</Button>
                   </span>                    
                 </li>
               </ul>

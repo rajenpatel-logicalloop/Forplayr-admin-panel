@@ -18,6 +18,7 @@ import AllUserList from './AllUserList'
 import ClubList from './ClubLists'
 import AllClubList from './AllClubList'
 import AllEditorialList from './AllEditorialList';
+import AllReportUserList  from './AllReportUserList'
 
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
@@ -61,7 +62,8 @@ const Routes = [
   ...AllUserList,
   ...ClubList,
   ...AllClubList,
-  ...AllEditorialList
+  ...AllEditorialList,
+  ...AllReportUserList
 ]
 
 const getRouteMeta = route => {

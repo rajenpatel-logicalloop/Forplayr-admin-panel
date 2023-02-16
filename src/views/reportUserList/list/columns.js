@@ -13,18 +13,19 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 
 // ** Reactstrap Imports
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Title } from '../../../utility/Utils'
 
 // ** Renders Client Columns
 const renderClient = (row) => {
-  if (row?.avatar !== null) {
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.avatar}`} width='32' height='32' />
+  if (row?.userId?.avatar !== null) {
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.userId?.avatar}`} width='32' height='32' />
   } else {
     return (
       <Avatar
         initials
         className='me-1'
         color='light-primary'
-        content={row?.firstName}
+        content={row?.userId?.firstName}
       />
     )
   }
@@ -41,44 +42,44 @@ const statusObj = {
 
 export const columns = [
   {
-    name: 'Utenti',
+    name: <Title str='ReportedBy' />, //'User',
     sortable: false,
     minWidth: '250px',
     sortField: 'firstName',
-    selector: row => row?.firstName,
+    selector: row => row?.userId?.firstName,
     cell: row => (
       <div className='d-flex justify-content-left align-items-center'>
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
-            to={`/apps/all-report-list/view/${row?._id}`}
+            to={`/apps/all-reportuser-list/view/${row?._id}`}
             className='report_name text-truncate text-body'
             onClick={() => store.dispatch(getReport(row?._id))}
           >
-            <span className='fw-bolder'>{row?.fistName} {row?.lastName}</span>
+            <span className='fw-bolder'>{row?.userId?.firstName} {row?.userId?.lastName}</span>
           </Link>
-          <small className='text-truncate text-muted mb-0'>{row?.email}</small>
+          <small className='text-truncate text-muted mb-0'>{row?.userId?.email}</small>
         </div>
       </div>
     )
   },
   {
-    name: 'Report User',
+    name: <Title str='ReportedTo' />,  //'Report User',
     sortable: false,
     minWidth: '172px',
     sortField: 'reportUser',
     selector: (row) => row?.reportUser?.firstName,
     cell: (row) => (
       <div class='d-flex flex-column'>
-        <span>{row?.firstName} {row?.lastName}</span>
+        <span>{row?.reportUser?.firstName} {row?.reportUser?.lastName}</span>
       </div>
     )
   },
   {
-    name: 'Report Reason',
+    name: <Title str='Reportreason' />,  //'Report Reason',
     sortable: false,
     minWidth: '172px',
-    sortField: 'city',
+    sortField: 'reportReason',
     selector: (row) => row?.reportReason,
     cell: (row) => row?.reportReason
   },            
@@ -109,7 +110,7 @@ export const columns = [
   //   ) 
   // },      
   {
-    name: 'Actions',
+    name: <Title str='Actions' />,  //'Actions',
     minWidth: '100px',
     cell: row => (
       <div className='column-action' >
@@ -125,7 +126,7 @@ export const columns = [
               onClick={() => store.dispatch(getReport(row?._id))}
             >
               <FileText size={14} className='me-50' />
-              <span className='align-middle'>Details</span>
+              <span className='align-middle'>{ <Title str='Details' />}</span>
             </DropdownItem>
             {/* <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
               <Archive size={14} className='me-50' />
@@ -156,7 +157,7 @@ export const columns = [
               }}
             >
               <Trash2 size={14} className='me-50' />
-              <span className='align-middle'>Delete</span>
+              <span className='align-middle'>{<Title str='Delete' />}</span>
             </DropdownItem> 
             {/* <DropdownItem
               className='w-100'
@@ -172,8 +173,8 @@ export const columns = [
               <span className='align-middle'>{row.status === "blocked" ? "Unblock" : "Block"}</span>
             </DropdownItem>  */}
 
-            {/*!row?.isPermited && */
-            <DropdownItem
+            {/* /*!row?.isPermited && */ }
+            {/* <DropdownItem
               className='w-100'
               onClick={e => {
                 e.preventDefault()
@@ -182,7 +183,7 @@ export const columns = [
             >
               <CheckSquare size={14} className='me-50' />
               <span className='align-middle'>{row?.isPermited ? "Disallow" : "Allow"}</span>
-            </DropdownItem>}
+            </DropdownItem> */}
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>

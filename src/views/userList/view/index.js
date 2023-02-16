@@ -15,6 +15,7 @@ import UserInfoCard from './UserInfoCard'
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
+import { Title } from '../../../utility/Utils'
 
 const UserView = () => {
   // ** Store Vars
@@ -54,9 +55,9 @@ const UserView = () => {
     </div>
   ) : (
     <Alert color='danger'>
-      <h4 className='alert-heading'>User not found</h4>
+      <h4 className='alert-heading'>{<Title str='User' />} {<Title str='notfound' />}</h4>
       <div className='alert-body'>
-        User with id: {id} doesn't exist. Check list of all Users: <Link to='/apps/user/list'>Users List</Link>
+        {<Title str='Userwithid' />}: {id} {<Title str='doesnotexist' />}. { <Title str='Check list of all' />} {<Title str='User'/>}: <Link to='/apps/user/list'>{<Title str='User' />} {<Title str='List' />}</Link>
       </div>
     </Alert>
   )

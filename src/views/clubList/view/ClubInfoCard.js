@@ -12,6 +12,7 @@ import Avatar from '@components/avatar'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
+import { Title } from '../../../utility/Utils'
 
 const roleColors = {
   job_seeker: 'light-info',
@@ -104,39 +105,39 @@ const ClubInfoCard = ({ selectedClub }) => {
             </div>
 
           </div> */}
-          <h4 className='fw-bolder border-bottom pb-50 mb-1'>Details</h4>
+          <h4 className='fw-bolder border-bottom pb-50 mb-1'>{<Title str='Details' />}</h4>
           <div className='info-container'>
             {selectedClub !== null ? (
               <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>ClubName : </span>
+                  <span className='fw-bolder me-25'>{<Title str='Name' />} : </span>
                   <span>{selectedClub?.data?.businessName}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>CompanyEmail : </span>
+                  <span className='fw-bolder me-25'>{<Title str='Email' />} : </span>
                   <span>{selectedClub?.data?.companyEmail}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>CompanyPhoneNo : </span>
+                  <span className='fw-bolder me-25'>{<Title str='PhoneNo' />} : </span>
                   <span>{selectedClub?.data?.companyPhoneNo}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Address:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Address' />} : </span>
                   <span>{selectedClub?.data?.address}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>City:</span>
+                  <span className='fw-bolder me-25'>{ <Title str='City' />} : </span>
                   <span>{selectedClub?.data?.city}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Province:</span>
-                  <span>{selectedClub?.data?.province}</span>
+                  <span className='fw-bolder me-25'>{<Title str='Province' />} : </span>
+                  <span>{selectedClub?.data?.province?.name}</span>
                 </li>
 
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Status: </span>
+                  <span className='fw-bolder me-25'>{<Title str='Status' />} : </span>
                   <Badge className='text-capitalize' color={statusColors[selectedClub?.data?.status === 'approved' ? 'approved' : 'rejcected']}>
-                    {selectedClub?.data?.status === 'approved' ? 'approved' : 'rejected'}
+                   {<Title str={selectedClub?.data?.status === 'approved' ? 'approved' : 'rejected'} />}  
                   </Badge>
                 </li>
               </ul>

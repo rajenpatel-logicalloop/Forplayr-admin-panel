@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
 //import { getClub } from '../store'
-import { getEditorial } from '../store'
+import { getReport } from '../store'
 import { useSelector, useDispatch } from 'react-redux'
 
 // ** Reactstrap Imports
@@ -12,15 +12,16 @@ import { Row, Col, Alert } from 'reactstrap'
 
 // ** User View Components
 import UserTabs from './Tabs'
-import EditoriaInfoCard from './EditoriaInfoCard'
+import ReportInfoCard from './ReportInfoCard'
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
+import { Title } from '../../../utility/Utils'
 
-const EditorialView = () => {
+const ReportView = () => {
   // ** Store Vars
-  const store = useSelector(state => state.editorialList)
-  console.log("Editorial view store=>", store.selectedEditorial);
+  const store = useSelector(state => state.reportList)
+  console.log("Report view store=>", store.selectedReport);
   const dispatch = useDispatch()
 
   // ** Hooks
@@ -28,7 +29,7 @@ const EditorialView = () => {
 
   // ** Get suer on mount
   useEffect(() => {
-    dispatch(getEditorial(id))
+    dispatch(getReport(id))
   }, [dispatch])
 
   // const [active, setActive] = useState('1')
@@ -40,11 +41,11 @@ const EditorialView = () => {
   // }
 
 
-  return store.selectedEditorial !== null && store.selectedEditorial !== undefined ? (
-    <div className='app-editorial-view'>
+  return store.selectedReport !== null && store.selectedReport !== undefined ? (
+    <div className='app-report-view'>
       <Row>
         <Col xl='4' lg='5' xs={{ order: 1 }} md={{ order: 0, size: 5 }}>
-          <EditoriaInfoCard selectedEditorial={store.selectedEditorial} />
+          <ReportInfoCard selectedReport={store.selectedReport} />
         </Col>
         <Col xl='8' lg='7' xs={{ order: 0 }} md={{ order: 1, size: 7 }}>
           {/* <UserTabs
@@ -57,11 +58,11 @@ const EditorialView = () => {
     </div>
   ) : (
     <Alert color='danger'>
-      <h4 className='alert-heading'>Editorial not found</h4>
+      <h4 className='alert-heading'>{<Title str='Report' />} {<Title str='notfound' />}</h4>
       <div className='alert-body'>
-        Editorial with id: {id} doesn't exist. Check list of all Editorials: <Link to='/apps/all-editorial-list'>All Editorials List</Link>
+        {<Title str='Reportwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} {<Title str='Report' />}: <Link to='/apps/all-editorial-list'>{<Title str='allreportlist' />}</Link>
       </div>
     </Alert>
   )
 }
-export default EditorialView
+export default ReportView

@@ -18,6 +18,8 @@ import ClubInfoCard from './ClubInfoCard'
 // ** Styles
 import '@styles/react/apps/app-users.scss'
 
+import { Title } from '../../../utility/Utils'
+
 const ClubView = () => {
   // ** Store Vars
   const store = useSelector(state => state.clubList)
@@ -57,9 +59,9 @@ const ClubView = () => {
     </div>
   ) : (
     <Alert color='danger'>
-      <h4 className='alert-heading'>Club not found</h4>
+      <h4 className='alert-heading'>{<Title str='Club' />}  {<Title str='notfound'/>}</h4>
       <div className='alert-body'>
-        club with id: {id} doesn't exist. Check list of all clubs: <Link to='/apps/club/list'>Clubs List</Link>
+       {<Title str='clubwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str='Check list of all' />}: <Link to='/apps/club/list'>{<Title str='club' />} {<Title str='List' />}</Link>
       </div>
     </Alert>
   )

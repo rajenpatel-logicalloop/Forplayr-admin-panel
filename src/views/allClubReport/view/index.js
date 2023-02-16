@@ -16,6 +16,7 @@ import ClubInfoCard from './ClubInfoCard'
 
 // ** Styles
 import '@styles/react/apps/app-users.scss'
+import { Title } from '../../../utility/Utils'
 
 const ClubView = () => {
   // ** Store Vars
@@ -57,9 +58,10 @@ const ClubView = () => {
     </div>
   ) : (
     <Alert color='danger'>
-      <h4 className='alert-heading'>Club not found</h4>
+      <h4 className='alert-heading'>{<Title str='Club' />} { <Title str="notfound" />}</h4>
       <div className='alert-body'>
-        Club with id: {id} doesn't exist. Check list of all Clubs: <Link to='/apps/all-club-list'>All Clubs List</Link>
+        {/* Club with id: {id} doesn't exist. Check list of all Clubs: <Link to='/apps/all-club-list'>All Clubs List</Link> */}
+        {<Title str='ClubClubwithid' />}: {id} {<Title str='doesnot exist' />}. {<Title str='Check list of all' />} {<Title str="Club" />}: <Link to='/apps/all-club-list'>{<Title str='Check list of all' />} { <Title str='Club' />}</Link>
       </div>
     </Alert>
   )

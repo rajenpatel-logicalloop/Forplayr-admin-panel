@@ -15,7 +15,7 @@ import allUserLists from './allUserLists'
 // ** Merge & Export
 export default [
     // ...dashboards,
-    ...userLists,
+    // ...userLists,
     // ...apps,
     // ...pages,
     // ...uiElements,

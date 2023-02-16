@@ -12,6 +12,7 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 
 // ** Reactstrap Imports
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Title } from '../../../utility/Utils'
 
 // ** Renders Client Columns
 const renderClient = (row) => {
@@ -40,7 +41,7 @@ const statusObj = {
   
 export const columns = [
     {
-        name: 'Club',
+        name: <Title str='Club' />,  //'Club',
         sortable: false,
         minWidth: '250px',
         sortField: 'businessName',
@@ -63,7 +64,7 @@ export const columns = [
       },  
 
       {
-        name: 'CompanyPhoneNo',
+        name: <Title str='PhoneNo' />, //'CompanyPhoneNo',
         sortable: false,
         minWidth: '172px',
         sortField: 'companyPhoneNo',
@@ -71,7 +72,7 @@ export const columns = [
         cell: (row) => row?.companyPhoneNo //renderRole(row)
       },
       {
-        name: 'City',
+        name: <Title str='City' />, //'City',
         sortable: false,
         minWidth: '172px',
         sortField: 'city',
@@ -79,7 +80,7 @@ export const columns = [
         cell: (row) => row?.city
       },            
       {
-        name: 'Province',
+        name: <Title str='Province' />, //'Province',
         sortable: false,
         minWidth: '172px',
         sortField: 'province',
@@ -99,7 +100,7 @@ export const columns = [
       //   )
       // },
       {
-        name: 'Status',
+        name: <Title str='Status' />, //'Status',
         minWidth: '138px',
         sortable: false,
         sortField: 'status',
@@ -116,7 +117,7 @@ export const columns = [
         ) 
       },      
       {
-        name: 'Actions',
+        name: <Title str='Actiions' />,  //'Actions',
         minWidth: '100px',
         cell: row => (
           <div className='column-action'>
@@ -132,7 +133,7 @@ export const columns = [
                   onClick={() => store.dispatch(getClub(row?._id))}
                 >
                   <FileText size={14} className='me-50' />
-                  <span className='align-middle'>Details</span>
+                  <span className='align-middle'>{<Title str='Details' />}</span>
                 </DropdownItem>
                 {/* <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
                   <Archive size={14} className='me-50' />
@@ -150,7 +151,7 @@ export const columns = [
                   }}
                 >
                   <Slash size={14} className='me-50' />
-                  <span className='align-middle'>{row.status === "refused" ? "Approved" : "Refused"}</span>
+                  <span className='align-middle'>{<Title str={row.status === "refused" ? "Approved" : "Refused"} />}</span>
                 </DropdownItem> 
 
                 <DropdownItem
@@ -163,7 +164,7 @@ export const columns = [
                   }}
                 >
                   <Trash2 size={14} className='me-50' />
-                  <span className='align-middle'>Delete</span>
+                  <span className='align-middle'>{ <Title str='Delete' />}</span>
                 </DropdownItem> 
                 {/* <DropdownItem
                   className='w-100'
@@ -188,7 +189,7 @@ export const columns = [
                   }}
                 >
                   <CheckSquare size={14} className='me-50' />
-                  <span className='align-middle'>{row?.isPermited ? "Disallow" : "Allow"}</span>
+                  <span className='align-middle'>{<Title str={row?.isPermited ? "Disallow" : "Allow"} />}</span>
                 </DropdownItem>}
               </DropdownMenu>
             </UncontrolledDropdown>

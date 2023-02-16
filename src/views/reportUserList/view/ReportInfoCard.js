@@ -22,6 +22,7 @@ import Avatar from "@components/avatar";
 
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
+import { Title } from "../../../utility/Utils";
 
 const roleColors = {
   job_seeker: "light-info",
@@ -38,55 +39,56 @@ const statusColors = {
   banned: "light-secondary",
 };
 
-const EditorialInfoCard = ({ selectedEditorial }) => {
+
+ReportInfoCard = ({ selectedReport }) => {
   // ** render user img
-  const renderEditorialImg = () => {
-    if (
-      selectedEditorial !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}` !==
-        null
-    ) {
-      return (
-        <img
-          height="110"
-          width="110"
-          alt="editorial-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}`}
-          className="img-fluid rounded mt-3 mb-2"
-        />
-      );
-    } else {
-      return (
-        <Avatar
-          initials
-          color={"light-primary"}
-          className="rounded mt-3 mb-2"
-          content={selectedEditorial?.businessName}
-          contentStyles={{
-            borderRadius: 0,
-            fontSize: "calc(48px)",
-            width: "100%",
-            height: "100%",
-          }}
-          style={{
-            height: "110px",
-            width: "110px",
-          }}
-        />
-      );
-    }
-  };
+  // const renderReportImg = () => {
+  //   if (
+  //     selectedReport !== null &&
+  //     `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport?.logo}` !==
+  //       null
+  //   ) {
+  //     return (
+  //       <img
+  //         height="110"
+  //         width="110"
+  //         alt="report-avatar"
+  //         src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport?.logo}`}
+  //         className="img-fluid rounded mt-3 mb-2"
+  //       />
+  //     );
+  //   } else {
+  //     return (
+  //       <Avatar
+  //         initials
+  //         color={"light-primary"}
+  //         className="rounded mt-3 mb-2"
+  //         content={selectedReport?.businessName}
+  //         contentStyles={{
+  //           borderRadius: 0,
+  //           fontSize: "calc(48px)",
+  //           width: "100%",
+  //           height: "100%",
+  //         }}
+  //         style={{
+  //           height: "110px",
+  //           width: "110px",
+  //         }}
+  //       />
+  //     );
+  //   }
+  // };
 
   return (
     <Fragment>
       <Card>
         <CardBody>
-          <div className="club-avatar-section">
+          <div className="report-avatar-section">
             <div className="d-flex align-items-center flex-column">
-              {renderEditorialImg()}
+              {/* {renderEditorialImg()} */}
               <div className="d-flex flex-column align-items-center text-center">
                 <div className="club-info">
-                  <h4>{selectedEditorial?.businessName}</h4>
+                  <h4>{selectedReport?.userId?.firstName} {selectedReport?.userId?.lastName}</h4>
                   {/* {selectedClub !== null ? (
                     <Badge color={roleColors[selectedClub?.role?.name]} className='text-capitalize'>
                       {selectedClub?.role?.name}
@@ -116,21 +118,21 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
               </div>
             </div>
           </div> */}
-          <h4 className="fw-bolder border-bottom pb-50 mb-1">Details</h4>
+          <h4 className="fw-bolder border-bottom pb-50 mb-1">{<Title str='Details'/>}</h4>
           <div className="info-container">
-            {selectedEditorial !== null ? (
+            {selectedReport !== null ? (
               <ul className="list-unstyled">
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Editorial Name : </span>
-                  <span>{selectedEditorial?.businessName}</span>
+                  <span className="fw-bolder me-25">{<Title str='ReportedBy' />} : </span>
+                  <span>{selectedReport?.firstName} {selectedReport?.lastName}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">Email:</span>
-                  <span>{selectedEditorial?.companyEmail}</span>
+                  <span className="fw-bolder me-25">{<Title str='ReportedTo' />} : </span>
+                  <span>{selectedReport?.reportUser}</span>
                 </li>
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">PhoneNo : </span>
-                  <span>{selectedEditorial?.companyPhoneNo}</span>
+                  <span className="fw-bolder me-25">{<Title str='Reportreason'/>} : </span>
+                  <span>{selectedReport?.reportReason}</span>
                   {/* <Badge 
                     className='text-capitalize' 
                     color={statusColors[selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'pending' : 'inactive']} 
@@ -138,44 +140,10 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                     {selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'inactive' : 'blocked'}
                   </Badge> */}
                 </li>
-                <li className="mb-75">
-                  <span className="fw-bolder me-25">Address : </span>
-                  <span>{selectedEditorial?.address}</span>
-                </li>
-                <li className="mb-75">
-                  <span className="fw-bolder me-25">City : </span>
-                  <span>{selectedEditorial?.city}</span>
-                </li>
-                <li className="mb-75">
-                  <span className="fw-bolder me-25">Province : </span>
-                  <span>{selectedEditorial?.province?.name}</span>
-                </li>
-                <li className="mb-75">
-                  <span className="fw-bolder me-25">Status : </span>
-                  <Badge
-                    className="text-capitalize"
-                    color={
-                      statusColors[
-                        selectedEditorial?.status === "approved"
-                          ? "approved"
-                          : selectedEditorial?.status === "refused"
-                          ? "refused"
-                          : "inactive"
-                      ]
-                    }
-                    pill
-                  >
-                    {selectedEditorial?.status === "approved"
-                      ? "approved"
-                      : selectedEditorial?.status === "refused"
-                      ? "refused"
-                      : "inactive"}
-                  </Badge>
-                </li>
-                <li>
+                {/* <li>
                 <span className="fw-bolder me-25"> 
                     <Button onClick={(e) => {
-                        console.log("On click button==>", selectedEditorial?._id) ;
+                        console.log("On click button==>", selectedReport?._id) ;
                         e.preventDefault();
                         store.dispatch(
                           approvedEditorial({
@@ -203,7 +171,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
                       }}
                     >Delete</Button>
                   </span>                    
-                </li>
+                </li> */}
               </ul>
             ) : null}
           </div>
@@ -213,4 +181,4 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
   );
 };
 
-export default EditorialInfoCard;
+export default ReportInfoCard;

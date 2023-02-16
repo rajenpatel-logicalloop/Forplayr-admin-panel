@@ -27,6 +27,7 @@ import {
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
+import { Title } from '../../../utility/Utils'
 
 // ** Table Header
 const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
@@ -35,7 +36,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
       <Row>
         <Col xl='6' className='d-flex align-items-center p-0'>
           <div className='d-flex align-items-center w-100'>
-            <label htmlFor='rows-per-page'>Show</label>
+            <label htmlFor='rows-per-page'>{<Title str='show'/>}</label>
             <Input
               className='mx-50'
               type='select'
@@ -48,7 +49,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
               <option value='25'>25</option>
               <option value='50'>50</option>
             </Input>
-            <label htmlFor='rows-per-page'>Entries</label>
+            <label htmlFor='rows-per-page'>{<Title str='entries' />}</label>
           </div>
         </Col>
         <Col
@@ -57,7 +58,7 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
         >
           <div className='d-flex align-items-center mb-sm-0 mb-1 me-1'>
             <label className='mb-0' htmlFor='search-invoice'>
-              Search:
+              {<Title str='Search' />}:
             </label>
             <Input
               id='search-invoice'
@@ -73,11 +74,11 @@ const CustomHeader = ({ handlePerPage, rowsPerPage, handleFilter, searchTerm }) 
   )
 }
 
-const EditorialsList = () => {
-  console.log("Editorial List==>");
+const ReportsList = () => {
+  console.log("Reported Users List==>");
   // ** Store Vars
   const dispatch = useDispatch()
-  const store = useSelector(state => state.editorialList)
+  const store = useSelector(state => state.reportList)
 
   // ** States
   const [sort, setSort] = useState('desc')
@@ -242,4 +243,4 @@ const EditorialsList = () => {
   )
 }
 
-export default EditorialsList
+export default ReportsList

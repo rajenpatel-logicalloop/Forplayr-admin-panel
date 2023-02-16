@@ -12,6 +12,7 @@ import Avatar from '@components/avatar'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
+import { Title } from '../../../utility/Utils'
 
 const roleColors = {
   job_seeker: 'light-info',
@@ -82,7 +83,7 @@ const UserInfoCard = ({ selectedUser }) => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-around my-2 pt-75'>
+          {/* <div className='d-flex justify-content-around my-2 pt-75'>
           <div className='d-flex align-items-start me-2'>
               <Badge color='light-primary' className='rounded p-75'>
                 <Check className='font-medium-2' />
@@ -102,43 +103,43 @@ const UserInfoCard = ({ selectedUser }) => {
               </div>
             </div>
 
-          </div>
-          <h4 className='fw-bolder border-bottom pb-50 mb-1'>Details</h4>
+          </div> */}
+          <h4 className='fw-bolder border-bottom pb-50 mb-1'>{<Title str='Details' />}</h4>
           <div className='info-container'>
             {selectedUser !== null ? (
               <ul className='list-unstyled'>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Username: </span>
+                  <span className='fw-bolder me-25'>{<Title str='Name' /> } : </span>
                   <span>{selectedUser?.firstName} {selectedUser?.lastName}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Email: </span>
+                  <span className='fw-bolder me-25'>{<Title str='Email' /> } : </span>
                   <span>{selectedUser?.email}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Status: </span>
+                  <span className='fw-bolder me-25'>{<Title str='Status' />} : </span>
                   <Badge className='text-capitalize' color={statusColors[selectedUser?.status === 'active' ? 'active' : 'inactive']}>
-                    {selectedUser?.status === 'active' ? 'active' : 'inactive'}
+                    {<Title str={selectedUser?.status === 'active' ? 'active' : 'inactive'} /> }
                   </Badge>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Date Of Birth:</span>
+                  <span className='fw-bolder me-25'>{<Title str='dateofbirth'/> } : </span>
                   <span>{selectedUser?.dateOfBirth.slice(0, 10)}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Height:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Height' />} : </span>
                   <span>{selectedUser?.height}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Weight:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Weight' />} : </span>
                   <span>{selectedUser?.weight}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>Address:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Addres' />} : </span>
                   <span>{selectedUser?.residence.name}</span>
                 </li>
                 <li className='mb-75'>
-                  <span className='fw-bolder me-25'>ReferCode:</span>
+                  <span className='fw-bolder me-25'>{<Title str='Refercode' />} : </span>
                   <span>{selectedUser?.referCode}</span>
                 </li>
               </ul>
