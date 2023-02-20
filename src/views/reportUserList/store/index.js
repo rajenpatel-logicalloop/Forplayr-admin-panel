@@ -53,11 +53,25 @@ export const getReport = createAsyncThunk('appReporUsertList/getReport', async (
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       //Authorization: `Bearer ${authData.accessToken}`
-    }
+    },
+   
   }
   const response = await axios.get(`${API}report/fetch/${id}`, config)
   return response.data.data
 })
+
+export const getUser = createAsyncThunk('appReporUsertList/getUser', async (id) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      //Authorization: `Bearer ${authData.accessToken}`
+    }
+  }
+  const response = await axios.get(`${API}user/fetch/${id}`, config)
+  console.log('User data from report==>', response.data.data);
+  return response.data.data
+})
+
 
 export const addReport = createAsyncThunk('appReportUserList/addReportUser', async (report, { dispatch, getState }) => {
   const config = {
@@ -156,7 +170,7 @@ export const appReportUserListSlice = createSlice({
         state.total = action.payload.totalPages
       })
       .addCase(getReport.fulfilled, (state, action) => {
-        state.selectedEditorial = action.payload
+        state.selectedReport = action.payload
       })
   }
 })

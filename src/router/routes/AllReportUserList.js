@@ -8,7 +8,7 @@ const ReportView = lazy(() => import('../../views/reportUserList/view'))
 const AppRoutes = [
     {
         element: <ReportsList />,
-        path: '/apps/all-reportuser-list'
+        path: '/apps/all-reportuser-list',
     },
     {
         element: <Navigate to='/all-reportuser-list/view/1' />,

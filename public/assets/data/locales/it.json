@@ -220,5 +220,6 @@
   "ReportedBy" : "Segnalato da",
   "ReportedTo": "Segnalato a",
   "Reportwithid":"Segnalato con id",
-  "allrerportlist":"Elenco di tutti i rapporti"
+  "allrerportlist":"Elenco di tutti i rapporti",
+  "ReportCount":"Conteggio rapporto"
 }

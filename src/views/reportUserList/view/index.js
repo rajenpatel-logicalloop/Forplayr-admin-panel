@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 
 // ** Store & Actions
 //import { getClub } from '../store'
-import { getReport } from '../store'
+import { getReport, getUser } from '../store'
 import { useSelector, useDispatch } from 'react-redux'
 
 // ** Reactstrap Imports
@@ -60,7 +60,7 @@ const ReportView = () => {
     <Alert color='danger'>
       <h4 className='alert-heading'>{<Title str='Report' />} {<Title str='notfound' />}</h4>
       <div className='alert-body'>
-        {<Title str='Reportwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} {<Title str='Report' />}: <Link to='/apps/all-editorial-list'>{<Title str='allreportlist' />}</Link>
+        {<Title str='Reportwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} {<Title str='Report' />}: <Link to='/apps/all-editorial-list'>{<Title str='allrerportlist' />}</Link>
       </div>
     </Alert>
   )

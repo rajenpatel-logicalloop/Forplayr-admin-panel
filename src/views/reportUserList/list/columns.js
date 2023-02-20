@@ -6,7 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getReport, deleteReport, permitReport, blockReport, approvedReport } from '../store'
+import { getReport, deleteReport, permitReport, blockReport, approvedReport, getUser } from '../store'
 
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, CheckSquare, Slash } from 'react-feather'
@@ -122,7 +122,7 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/apps/all-report-list/view/${row?._id}`}
+              to={`/apps/all-reportuser-list/view/${row?._id}`}
               onClick={() => store.dispatch(getReport(row?._id))}
             >
               <FileText size={14} className='me-50' />

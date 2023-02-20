@@ -13,7 +13,7 @@ export default [
         id: 'allUserList',
         title:   'Utenti Liste', //<Title str='AllUserList' />, 
         icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}} src={require('@src/assets/images/icons/user.png').default} alt="brand logo" />, //<User size={20} />,
-        navLink: '/apps/all-user-list'
+        navLink: '/apps/all-user-list',
     },
     {
         id: 'allClubList',
@@ -29,8 +29,24 @@ export default [
     },
     {
         id: 'allReportUserList',
-        title: '  Elenco rapporti',
+        title: 'Elenchi di rapporti', //'  Utente segnalato',
         icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}} src={require('@src/assets/images/icons/user.png').default} alt="brand logo" />, //<User size={20} />,
-        navLink: '/apps/all-reportuser-list'
+        //navLink: '/apps/all-reportuser-list',
+        // badge: 'light-success',
+        // // badgeText: 'New',        
+        children:[
+            {
+                id: 'reportuserList',
+                title: 'Utente segnalato',
+                //icon: <Circle size={12} />,
+                navLink: '/apps/all-reportuser-list'
+            },
+            {
+                id: 'reportClubList',
+                title: 'Societa sportive',
+                //icon: <Circle size={12} />,
+                navLink: '/cards/advance'
+             }            
+        ]
     }
 ]

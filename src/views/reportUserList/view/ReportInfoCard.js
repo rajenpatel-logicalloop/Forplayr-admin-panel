@@ -9,11 +9,11 @@ import { Check, Briefcase } from "react-feather";
 
 // ** Store & Actions
 import { store } from "@store/store";
-import {
-  getEditorial,
-  deleteEditorial,
-  permitEdiorial,
-  blockEditorial,
+import { 
+  getEditorial,  
+  deleteEditorial,  
+  permitEdiorial,  
+  blockEditorial,  
   approvedEditorial,
 } from "../store";
 
@@ -40,7 +40,7 @@ const statusColors = {
 };
 
 
-ReportInfoCard = ({ selectedReport }) => {
+const ReportInfoCard = ({ selectedReport }) => {
   // ** render user img
   // const renderReportImg = () => {
   //   if (
@@ -78,7 +78,7 @@ ReportInfoCard = ({ selectedReport }) => {
   //     );
   //   }
   // };
-
+  //console.log("Selected Report data==>", selectedReport[0]?.userId?.firstName);
   return (
     <Fragment>
       <Card>
@@ -88,7 +88,7 @@ ReportInfoCard = ({ selectedReport }) => {
               {/* {renderEditorialImg()} */}
               <div className="d-flex flex-column align-items-center text-center">
                 <div className="club-info">
-                  <h4>{selectedReport?.userId?.firstName} {selectedReport?.userId?.lastName}</h4>
+                  <h4>{selectedReport[0]?.userId?.firstName} {selectedReport[0]?.userId?.lastName}</h4>
                   {/* {selectedClub !== null ? (
                     <Badge color={roleColors[selectedClub?.role?.name]} className='text-capitalize'>
                       {selectedClub?.role?.name}
@@ -120,19 +120,19 @@ ReportInfoCard = ({ selectedReport }) => {
           </div> */}
           <h4 className="fw-bolder border-bottom pb-50 mb-1">{<Title str='Details'/>}</h4>
           <div className="info-container">
-            {selectedReport !== null ? (
+            {selectedReport[0] !== null ? (
               <ul className="list-unstyled">
                 <li className="mb-75">
                   <span className="fw-bolder me-25">{<Title str='ReportedBy' />} : </span>
-                  <span>{selectedReport?.firstName} {selectedReport?.lastName}</span>
+                  <span>{selectedReport[0]?.userId?.firstName} {selectedReport[0]?.userId?.lastName}</span>
                 </li>
                 <li className="mb-75">
                   <span className="fw-bolder me-25">{<Title str='ReportedTo' />} : </span>
-                  <span>{selectedReport?.reportUser}</span>
+                  <span>{selectedReport[0]?.reportUser?.firstName} {selectedReport[0]?.reportUser?.lastName}</span>
                 </li>
                 <li className="mb-75">
                   <span className="fw-bolder me-25">{<Title str='Reportreason'/>} : </span>
-                  <span>{selectedReport?.reportReason}</span>
+                  <span>{selectedReport[0]?.reportReason}</span>
                   {/* <Badge 
                     className='text-capitalize' 
                     color={statusColors[selectedUser?.status === "active" ? 'active' : selectedUser?.status === "deactive" ? 'pending' : 'inactive']} 
