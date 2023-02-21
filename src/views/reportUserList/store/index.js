@@ -143,7 +143,7 @@ export const deleteReportUser = createAsyncThunk('appReportUserList/deleteReport
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.delete(`${API}user/delete/${id}`, config)
+  await axios.delete(`${API}admin/user/delete/${id}`, config)
   await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
   return id
