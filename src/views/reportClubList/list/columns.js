@@ -18,8 +18,10 @@ import { Title } from '../../../utility/Utils'
 // ** Renders Client Columns
 const renderClient = (row) => {
   // if (row?.userId?.avatar !== null) {
-  if (row?._id?.userData?.avatar !== null) {    
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.userData?.avatar}`} width='32' height='32' />
+  if (row?._id?.clubData?.coverPage !== null) {    
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.clubData?.coverPage}`} width='32' height='32' />
+  } else if (row?._id?.clubData?.shield !== null) {    
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.clubData?.shield}`} width='32' height='32' />
   } else {
     return (
       <Avatar
@@ -27,7 +29,7 @@ const renderClient = (row) => {
         className='me-1'
         color='light-primary'
         // content={row?.userId?.firstName}
-        content={row?._id?.userData?.firstName}
+        content={row?._id?.clubData?.businessName}
       />
     )
   }
@@ -44,24 +46,24 @@ const statusObj = {
 
 export const columns = [
   {
-    name: <Title str='Reportuser' />, //'User',
+    name: <Title str='Reportclub' />, 
     sortable: false,
     minWidth: '250px',
-    sortField: 'firstName',
+    sortField: 'businessName',
     // selector: row => row?.userId?.firstName,
-    selector: row => row?._id?.userData?.firstName,
+    selector: row => row?._id?.clubData?.businessName,
     cell: row => (
       <div className='d-flex justify-content-left align-items-center'>
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
-            to={`/apps/all-reportuser-list/view/${row?._id?.userData?.reportUser}`}
+            to={`/apps/all-reportclub-list/view/${row?._id?.clubData?.reportClub}`}
             className='report_name text-truncate text-body'
-            onClick={() => store.dispatch(getReport(row?._id?.userData?.reportUser))}
+            onClick={() => store.dispatch(getReport(row?._id?.clubData?.reportClub))}
           >
-            <span className='fw-bolder'>{row?._id?.userData?.firstName} {row?._id?.userData?.lastName}</span>
+            <span className='fw-bolder'>{row?._id?.clubData?.businessName}</span>
           </Link>
-          <small className='text-truncate text-muted mb-0'>{row?._id?.userData?.email}</small>
+          <small className='text-truncate text-muted mb-0'>{row?._id?.clubData?.companyEmail}</small>
         </div>
       </div>
     )
@@ -70,11 +72,11 @@ export const columns = [
     name: <Title str='ReportCount' />,
     sortable: false,
     minWidth: '172px',
-    sortField: 'userCount',
-    selector: (row) => row?.userCount,
+    sortField: 'clubCount',
+    selector: (row) => row?.clubCount,
     cell: (row) => (
       <div class='d-flex flex-column'>
-        <span>{row?.userCount}</span>
+        <span>{row?.clubCount}</span>
       </div>
     )
   },
@@ -125,8 +127,8 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/apps/all-reportuser-list/view/${row?._id?.userData?.reportUser}`}
-              onClick={() => store.dispatch(getReport(row?._id?.userData?.reportUser))}
+              to={`/apps/all-reportclub-list/view/${row?._id?.clubData?.reportClub}`}
+              onClick={() => store.dispatch(getReport(row?._id?.clubData?.reportClub))}
             >
               <FileText size={14} className='me-50' />
               <span className='align-middle'>{ <Title str='Details' />}</span>

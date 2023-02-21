@@ -45,7 +45,7 @@ export default [
                 id: 'reportClubList',
                 title: 'Societa sportive',
                 //icon: <Circle size={12} />,
-                navLink: '/cards/advance'
+                navLink: '/apps/all-reportclub-list'
              }            
         ]
     }

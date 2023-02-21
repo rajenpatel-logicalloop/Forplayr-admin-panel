@@ -9,13 +9,13 @@ import { Check, Briefcase } from "react-feather";
 
 // ** Store & Actions
 import { store } from "@store/store";
-import { 
-  getEditorial,  
-  deleteEditorial,  
-  permitEdiorial,  
-  blockEditorial,  
-  approvedEditorial,
-} from "../store";
+// import { 
+//   getEditorial,  
+//   deleteEditorial,  
+//   permitEdiorial,  
+//   blockEditorial,  
+//   approvedEditorial,
+// } from "../store";
 
 // ** Custom Components
 import Avatar from "@components/avatar";
@@ -45,7 +45,7 @@ const ReportInfoCard = ({ selectedReport }) => {
   const renderReportImg = () => {
     if (
       selectedReport !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.userData?.avatar}` !==
+      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.coverPage}` !==
         null
     ) {
       return (
@@ -53,7 +53,21 @@ const ReportInfoCard = ({ selectedReport }) => {
           height="110"
           width="110"
           alt="report-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.userData?.avatar}`}
+          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.coverPage}`}
+          className="img-fluid rounded mt-3 mb-2"
+        />
+      );
+    } else if (
+      selectedReport !== null &&
+      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.shield}` !==
+        null
+    ) {
+      return (
+        <img
+          height="110"
+          width="110"
+          alt="report-avatar"
+          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.shield}`}
           className="img-fluid rounded mt-3 mb-2"
         />
       );
@@ -63,7 +77,7 @@ const ReportInfoCard = ({ selectedReport }) => {
           initials
           color={"light-primary"}
           className="rounded mt-3 mb-2"
-          content={selectedReport[0]?._id?.userData?.firstName} 
+          content={selectedReport[0]?._id?.clubData?.businessName} 
           contentStyles={{
             borderRadius: 0,
             fontSize: "calc(48px)",
@@ -119,16 +133,20 @@ const ReportInfoCard = ({ selectedReport }) => {
             {selectedReport[0] !== null ? (
               <ul className="list-unstyled">
                 <li className="mb-75">
-                  <span className="fw-bolder me-25">{<Title str='Reportuser' />} : </span>
-                  <span>{selectedReport[0]?._id?.userData?.firstName} {selectedReport[0]?._id?.userData?.lastName}</span>
+                  <span className="fw-bolder me-25">{<Title str='Reportclub' />} : </span>
+                  <span>{selectedReport[0]?._id?.clubData?.businessName}</span>
                 </li>
                 <li className="mb-75">
                   <span className="fw-bolder me-25">{<Title str='ReportCount' />} : </span>
-                  <span>{selectedReport[0]?.userCount}</span>
+                  <span>{selectedReport[0]?.clubCount}</span>
                 </li>
                 <li className="mb-75">
                   <span className="fw-bolder me-25">{<Title str='Email' />} : </span>
-                  <span>{selectedReport[0]?._id?.userData?.email}</span>
+                  <span>{selectedReport[0]?._id?.clubData?.companyEmail}</span>
+                </li>
+                <li className="mb-75">
+                  <span className="fw-bolder me-25">{<Title str='PhoneNo' />} : </span>
+                  <span>{selectedReport[0]?._id?.clubData?.companyPhoneNo}</span>
                 </li>
 
                 {/* <li className="mb-75">

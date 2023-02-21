@@ -20,8 +20,8 @@ import { Title } from '../../../utility/Utils'
 
 const ReportView = () => {
   // ** Store Vars
-  const store = useSelector(state => state.reportList)
-  console.log("Report view store=>", store.selectedReport);
+  const store = useSelector(state => state.reportClubList)
+  // console.log("Report view store=>", store.selectedReport);
   const dispatch = useDispatch()
 
   // ** Hooks
@@ -29,7 +29,6 @@ const ReportView = () => {
 
   // ** Get suer on mount
   useEffect(() => {
-    console.log("use effect from==>");
     dispatch(getReport(id))
   }, [dispatch])
 
@@ -61,7 +60,7 @@ const ReportView = () => {
     <Alert color='danger'>
       <h4 className='alert-heading'>{<Title str='Report' />} {<Title str='notfound' />}</h4>
       <div className='alert-body'>
-        {<Title str='Reportwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} {<Title str='Report' />}: <Link to='/apps/all-editorial-list'>{<Title str='allrerportlist' />}</Link>
+        {<Title str='Reportwithid' />}: {id} {<Title str='doesnotexist' />}. {<Title str="Check list of all" />} {<Title str='Report' />}: <Link to='/apps/all-reportclub-list'>{<Title str='allrerportlist' />}</Link>
       </div>
     </Alert>
   )
