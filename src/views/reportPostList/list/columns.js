@@ -6,7 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getReport, deleteReportUser, permitReport, blockReport, approvedReport, getUser, getData } from '../store'
+import { getReport, deleteReportPost, permitReport, blockReport, approvedReport, getUser, getData } from '../store'
 
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, CheckSquare, Slash } from 'react-feather'
@@ -18,16 +18,17 @@ import { Title } from '../../../utility/Utils'
 // ** Renders Client Columns
 const renderClient = (row) => {
   // if (row?.userId?.avatar !== null) {
-  if (row?._id?.userData?.avatar !== null) {    
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.userData?.avatar}`} width='32' height='32' />
+  if (row?._id?.postData?.images[0] !== null) {    
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.postData?.images[0]}`} width='32' height='32' />
+  } else if (row?._id?.postData?.videos[0] !== null) {    
+    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.postData?.videos[0]}`} width='32' height='32' />
   } else {
     return (
       <Avatar
         initials
         className='me-1'
         color='light-primary'
-        // content={row?.userId?.firstName}
-        content={row?._id?.userData?.firstName}
+        content={row?._id?.postData?.description}
       />
     )
   }
@@ -44,24 +45,24 @@ const statusObj = {
 
 export const columns = [
   {
-    name: <Title str='Reportuser' />, //'User',
+    name: <Title str='Postuploadby' />, 
     sortable: false,
     minWidth: '250px',
-    sortField: 'firstName',
+    sortField: 'postData',
     // selector: row => row?.userId?.firstName,
-    selector: row => row?._id?.userData?.firstName,
+    selector: row => row?._id?.postData?.userId?.firstName,
     cell: row => (
       <div className='d-flex justify-content-left align-items-center'>
         {renderClient(row)}
         <div className='d-flex flex-column'>
           <Link
-            to={`/apps/all-reportuser-list/view/${row?._id?.userData?.reportUser}`}
+            to={`/apps/all-reportpost-list/view/${row?._id?.postData?.reportPost}`}
             className='report_name text-truncate text-body'
-            onClick={() => store.dispatch(getReport(row?._id?.userData?.reportUser))}
+            onClick={() => store.dispatch(getReport(row?._id?.postData?.reportPost))}
           >
-            <span className='fw-bolder'>{row?._id?.userData?.firstName} {row?._id?.userData?.lastName}</span>
+            <span className='fw-bolder'>{row?._id?.postData?.userId?.firstName} {row?._id?.postData?.userId?.lastName}</span>
           </Link>
-          <small className='text-truncate text-muted mb-0'>{row?._id?.userData?.email}</small>
+          <small className='text-truncate text-muted mb-0'>{row?._id?.postData?.userId?.email}</small>
         </div>
       </div>
     )
@@ -70,14 +71,27 @@ export const columns = [
     name: <Title str='ReportCount' />,
     sortable: false,
     minWidth: '172px',
-    sortField: 'userCount',
-    selector: (row) => row?.userCount,
+    sortField: 'postCount',
+    selector: (row) => row?.postCount,
     cell: (row) => (
       <div class='d-flex flex-column'>
-        <span>{row?.userCount}</span>
+        <span>{row?.postCount}</span>
       </div>
     )
   },
+  {
+    name: <Title str='Description' />,
+    sortable: false,
+    minWidth: '172px',
+    sortField: 'description',
+    selector: (row) => row?.description,
+    cell: (row) => (
+      <div class='d-flex flex-column'>
+        <span>{row?._id?.postData?.description}</span>
+      </div>
+    )
+  },
+
   // {
   //   name: <Title str='Reportreason' />,  //'Report Reason',
   //   sortable: false,
@@ -125,8 +139,8 @@ export const columns = [
             <DropdownItem
               tag={Link}
               className='w-100'
-              to={`/apps/all-reportuser-list/view/${row?._id?.userData?.reportUser}`}
-              onClick={() => store.dispatch(getReport(row?._id?.userData?.reportUser))}
+              to={`/apps/all-reportpost-list/view/${row?._id?.postData?.reportPost}`}
+              onClick={() => store.dispatch(getReport(row?._id?.postData?.reportPost))}
             >
               <FileText size={14} className='me-50' />
               <span className='align-middle'>{ <Title str='Details' />}</span>
@@ -156,7 +170,7 @@ export const columns = [
               className='w-100'
               onClick={e => {
                 e.preventDefault()
-                store.dispatch(deleteReportUser(row?._id?.userData?.reportUser))
+                store.dispatch(deleteReportPost(row?._id?.postData?.reportPost))
               }}
             >
               <Trash2 size={14} className='me-50' />

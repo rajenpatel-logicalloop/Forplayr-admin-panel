@@ -6,7 +6,7 @@ import Avatar from '@components/avatar'
 
 // ** Store & Actions
 import { store } from '@store/store'
-import { getReport, deleteReport, permitReport, blockReport, approvedReport, getUser, getData } from '../store'
+import { getReport, deleteReportClub, permitReport, blockReport, approvedReport, getUser, getData } from '../store'
 
 // ** Icons Imports
 import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2, CheckSquare, Slash } from 'react-feather'
@@ -156,10 +156,10 @@ export const columns = [
               // tag='a'
               // href='/'
               className='w-100'
-              // onClick={e => {
-              //   e.preventDefault()
-              //   store.dispatch(deleteReport(row?._id?.userData?.reportUser))
-              // }}
+              onClick={e => {
+                e.preventDefault()
+                store.dispatch(deleteReportClub(row?._id?.clubData?.reportClub))
+              }}
             >
               <Trash2 size={14} className='me-50' />
               <span className='align-middle'>{<Title str='Delete' />}</span>

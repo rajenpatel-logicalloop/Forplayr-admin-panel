@@ -18,6 +18,8 @@ import clubList from '@src/views/clubList/store'
 import editorialList  from '@src/views/allEditorialReport/store'
 import reportList from '@src/views/reportUserList/store'
 import reportClubList from '@src/views/reportClubList/store'
+import reportEditorialList from '@src/views/reportEditorialList/store'
+import reportPostList from '@src/views/reportPostList/store'
 
 const rootReducer = {
   auth,
@@ -39,6 +41,8 @@ const rootReducer = {
   editorialList,
   reportList,
   reportClubList,
+  reportEditorialList,
+  reportPostList,
 }
 
 export default rootReducer

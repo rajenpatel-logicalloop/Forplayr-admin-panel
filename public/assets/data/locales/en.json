@@ -214,5 +214,16 @@
   "dateofbirth":"Date of birth",
   "Height":"Height",
   "Weight":"Weight",
-  "Refercode":"Refercode" 
+  "Refercode":"Refercode",
+  "Reportuser": "Report User",
+  "Reportclub": "Report Club",
+  "Reporteditorial":"Report Editorial",
+  "Reportpost":"Report Post",
+  "Reportreason" : "Report Reason",
+  "ReportedBy" : "ReportedBy",
+  "ReportedTo": "ReportedTo",
+  "Reportwithid":"Report with id",
+  "allrerportlist":"All Report List",
+  "ReportCount":"Report Count",
+  "PostBy":"PostBy"  
 }

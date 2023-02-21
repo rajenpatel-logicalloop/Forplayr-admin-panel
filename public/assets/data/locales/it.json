@@ -224,5 +224,8 @@
   "ReportedTo": "Segnalato a",
   "Reportwithid":"Segnalato con id",
   "allrerportlist":"Elenco di tutti i rapporti",
-  "ReportCount":"Conteggio rapporto"
+  "ReportCount":"Conteggio rapporto",
+  "PostBy":"posta da",
+  "Description":"Descrizione",
+  "Postuploadby":"Pubblica il caricamento di"
 }

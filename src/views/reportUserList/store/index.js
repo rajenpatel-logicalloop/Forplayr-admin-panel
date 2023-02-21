@@ -136,14 +136,14 @@ export const addReport = createAsyncThunk('appReportUserList/addReportUser', asy
   return report
 })
 
-export const deleteReport = createAsyncThunk('appReportUserList/deleteReportUser', async (id, { dispatch, getState }) => {
+export const deleteReportUser = createAsyncThunk('appReportUserList/deleteReportUser', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.delete(`${API}admin/report/delete/${id}`, config)
+  await axios.delete(`${API}user/delete/${id}`, config)
   await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
   return id

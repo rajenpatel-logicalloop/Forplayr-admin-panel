@@ -46,7 +46,19 @@ export default [
                 title: 'Societa sportive',
                 //icon: <Circle size={12} />,
                 navLink: '/apps/all-reportclub-list'
-             }            
+            },
+            {
+                id: 'reportEditorialList',
+                title: 'Redazioni',
+                //icon: <Circle size={12} />,
+                navLink: '/apps/all-reporteditorial-list'
+            },
+            {
+                id: 'reportPostList',
+                title: 'Messaggi',
+                //icon: <Circle size={12} />,
+                navLink: '/apps/all-reportpost-list'
+            } 
         ]
     }
 ]

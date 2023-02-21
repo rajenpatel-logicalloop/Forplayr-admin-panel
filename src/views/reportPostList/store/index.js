@@ -5,7 +5,7 @@ import axios from 'axios'
 import API from '../../../configs/api'
 const authData = JSON.parse(localStorage.getItem("userData"))
 
-export const getAllData = createAsyncThunk('appReportClubList/getAllData', async () => {
+export const getAllData = createAsyncThunk('appReportPostList/getAllData', async () => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -16,14 +16,14 @@ export const getAllData = createAsyncThunk('appReportClubList/getAllData', async
       order: "desc",
       page: 1,
       limit: 10,
-      report: 'club'
+      report: 'post'
     }
   }
   const response = await axios.get(`${API}report/fetchcount`, config)
   return response.data.data
 })
 
-export const getData = createAsyncThunk('appReporClubList/getData', async (params) => {
+export const getData = createAsyncThunk('appReportPostList/getData', async (params) => {
   const config = {
     headers: {
       //Authorization: `Bearer ${authData.accessToken}`
@@ -34,7 +34,7 @@ export const getData = createAsyncThunk('appReporClubList/getData', async (param
       order: params.sort,
       page: params.page,
       limit: params.perPage,
-      report: 'club',
+      report: 'post',
     }
   }
   const response = await axios.get(`${API}report/fetchcount`, config)
@@ -45,25 +45,24 @@ export const getData = createAsyncThunk('appReporClubList/getData', async (param
   }
 })
 
-export const getReport = createAsyncThunk('appReporClubList/getReport', async (id) => {
+export const getReport = createAsyncThunk('appReportPostList/getReport', async (id) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       //Authorization: `Bearer ${authData.accessToken}`
     },
     params:{
-      report:'club',
-      reportClub:id,
+      report:'post',
+      reportPost:id,
     }
    
   }
   // const response = await axios.get(`${API}report/fetch/${id}`, config)
   const response = await axios.get(`${API}report/fetchcount`, config)  
-  console.log("get report single details==>");
   return response.data.data
 })
 
-export const getUser = createAsyncThunk('appReportClubList/getUser', async (id) => {
+export const getUser = createAsyncThunk('appReportPostList/getUser', async (id) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -71,12 +70,11 @@ export const getUser = createAsyncThunk('appReportClubList/getUser', async (id) 
     }
   }
   const response = await axios.get(`${API}user/fetch/${id}`, config)
-  console.log('User data from report==>', response.data.data);
   return response.data.data
 })
 
 
-export const addReport = createAsyncThunk('appReportClubList/addReportClub', async (report, { dispatch, getState }) => {
+export const addReport = createAsyncThunk('appReportPostList/addReportPost', async (report, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -89,21 +87,21 @@ export const addReport = createAsyncThunk('appReportClubList/addReportClub', asy
   return report
 })
 
-export const deleteReportClub = createAsyncThunk('appReportClubList/deleteReportClub', async (id, { dispatch, getState }) => {
+export const deleteReportPost = createAsyncThunk('appReportPostList/deleteReportPost', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
       // Authorization: `Bearer ${authData.accessToken}`
     }
   }    
-  await axios.delete(`${API}club/delete/${id}`, config)
+  await axios.delete(`${API}post/delete/${id}`, config)
   await dispatch(getData(getState().reports.params))
   await dispatch(getAllData())
   return id
 })
 
 console.log(localStorage.getItem('accessToken'), "accessToken")
-export const permitReport = createAsyncThunk('appReportClubList/permitReportClub', async (id, { dispatch, getState }) => {
+export const permitReport = createAsyncThunk('appReportPostList/permitReportPost', async (id, { dispatch, getState }) => {
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -118,7 +116,7 @@ export const permitReport = createAsyncThunk('appReportClubList/permitReportClub
 })
 
 export const approvedReport = createAsyncThunk(
-  "appReportClubList/approvedReportClub",
+  "appReportPostList/approvedReportPost",
   async (data, { dispatch, getState }) => {
     
     const config = {
@@ -138,7 +136,7 @@ export const approvedReport = createAsyncThunk(
   }
 );
 
-export const blockReport = createAsyncThunk('appReportClubList/blockReportClub', async (data, { dispatch, getState }) => {
+export const blockReport = createAsyncThunk('appReportPostList/blockReportPost', async (data, { dispatch, getState }) => {
   const config = {
     headers: {
       //Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -152,8 +150,8 @@ export const blockReport = createAsyncThunk('appReportClubList/blockReportClub',
   return id
 })
 
-export const appReportClubListSlice = createSlice({
-  name: 'appReportClubList',
+export const appReportPostListSlice = createSlice({
+  name: 'appReportPostList',
   initialState: {
     data: [],
     total: 1,
@@ -178,4 +176,4 @@ export const appReportClubListSlice = createSlice({
   }
 })
 
-export default appReportClubListSlice.reducer
+export default appReportPostListSlice.reducer
