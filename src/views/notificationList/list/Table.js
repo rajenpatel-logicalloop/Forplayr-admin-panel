@@ -376,14 +376,14 @@ const NotificationsList = () => {
             noHeader
             subHeader
             sortServer
-            pagination
+            // pagination
             responsive
-            paginationServer
+            // paginationServer
             //columns={columns}
             onSort={handleSort}
             sortIcon={<ChevronDown />}
             className="react-dataTable"
-            paginationComponent={CustomPagination}
+            // paginationComponent={CustomPagination}
             data={dataToRender()}
             subHeaderComponent={
               <CustomHeader
