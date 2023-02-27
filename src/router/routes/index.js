@@ -22,6 +22,7 @@ import AllReportUserList  from './AllReportUserList'
 import AllReportClubList from './AllReportClubList'
 import AllReportEditorialList from './AllReportEditorialList'
 import AllReportPostList from './AllReportPostList'
+import NotificationList from './NotificationList';
 
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
@@ -70,6 +71,7 @@ const Routes = [
   ...AllReportClubList,
   ...AllReportEditorialList,
   ...AllReportPostList,
+  ...NotificationList,
 ]
 
 const getRouteMeta = route => {

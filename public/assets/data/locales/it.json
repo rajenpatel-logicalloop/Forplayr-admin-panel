@@ -227,5 +227,10 @@
   "ReportCount":"Conteggio rapporto",
   "PostBy":"posta da",
   "Description":"Descrizione",
-  "Postuploadby":"Pubblica il caricamento di"
+  "Postuploadby":"Pubblica il caricamento di",
+  "Notification": "Notifiche",
+  "Region":"Regione",
+  "Sendnotification":"Invia notifica",
+  "NotificationTittle":"Titolo di notifica",
+  "NotificationMessage":"Messaggio di notifica"
 }

@@ -60,5 +60,11 @@ export default [
                 navLink: '/apps/all-reportpost-list'
             } 
         ]
-    }
+    },
+    {
+        id: 'notification',
+        title: '  Notifiche',
+        icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}}  />, //<User size={20} />, src={require('@src/assets/images/icons/Editorial.png').default} alt="brand logo"
+        navLink: '/apps/all-notification-list'
+    }    
 ]
