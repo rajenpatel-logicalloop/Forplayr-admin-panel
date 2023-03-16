@@ -41,7 +41,7 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
   const response = await axios.get(`${API}user/fetch`, config)
   return {
     params,
-    data: response.data.data,
+    data: response,
     totalPages: response.data.meta.total
   }
 })

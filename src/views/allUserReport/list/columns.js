@@ -16,11 +16,12 @@ import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem
 
 import { useTranslation } from 'react-i18next'
 import { convertLang, Title } from '../../../utility/Utils' 
+import S3BUCKET from '../../../configs/s3bucket'
 
 // ** Renders Client Columns
 const renderClient = (row) => {
   if (row?.avatar !== null) {
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?.avatar}`} width='32' height='32' />
+    return <Avatar className='me-1' img={`${S3BUCKET}${row?.avatar}`} width='32' height='32' />
   } else {
     return (
       <Avatar

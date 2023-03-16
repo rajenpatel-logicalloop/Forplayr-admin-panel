@@ -32,6 +32,7 @@ import '@styles/react/pages/page-authentication.scss'
 import axios from 'axios'
 import API from '../../../configs/api'
 import { getAllData } from '../../userList/store'
+import S3BUCKET from '../../../configs/s3bucket'
 
 const ToastContent = ({ t, name, role }) => {
   return (
@@ -130,7 +131,7 @@ const Login = () => {
             // ))  
                         
             const userData = {
-              avatar:  `https://forplayr.s3.ap-south-1.amazonaws.com/${avatar}`, // "/static/media/avatar-s-11.1d46cc62.jpg", //"https://forplayr.s3.ap-south-1.amazonaws.com/" &  avatar" 
+              avatar:  `${S3BUCKET}${avatar}`, // "/static/media/avatar-s-11.1d46cc62.jpg", //"https://forplayr.s3.ap-south-1.amazonaws.com/" &  avatar" 
               email: body.email,
               extras: { eCommerceCartItemsCount: 5 },
               fullName: firstName,

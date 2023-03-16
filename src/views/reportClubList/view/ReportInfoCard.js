@@ -23,6 +23,7 @@ import Avatar from "@components/avatar";
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import { Title } from "../../../utility/Utils";
+import S3BUCKET from '../../../configs/s3bucket'
 
 const roleColors = {
   job_seeker: "light-info",
@@ -45,7 +46,7 @@ const ReportInfoCard = ({ selectedReport }) => {
   const renderReportImg = () => {
     if (
       selectedReport !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.coverPage}` !==
+      `${S3BUCKET}${selectedReport[0]?._id?.clubData?.coverPage}` !==
         null
     ) {
       return (
@@ -53,13 +54,13 @@ const ReportInfoCard = ({ selectedReport }) => {
           height="110"
           width="110"
           alt="report-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.coverPage}`}
+          src={`${S3BUCKET}${selectedReport[0]?._id?.clubData?.coverPage}`}
           className="img-fluid rounded mt-3 mb-2"
         />
       );
     } else if (
       selectedReport !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.shield}` !==
+      `${S3BUCKET}${selectedReport[0]?._id?.clubData?.shield}` !==
         null
     ) {
       return (
@@ -67,7 +68,7 @@ const ReportInfoCard = ({ selectedReport }) => {
           height="110"
           width="110"
           alt="report-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.clubData?.shield}`}
+          src={`${S3BUCKET}${selectedReport[0]?._id?.clubData?.shield}`}
           className="img-fluid rounded mt-3 mb-2"
         />
       );

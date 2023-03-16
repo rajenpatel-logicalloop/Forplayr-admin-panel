@@ -23,6 +23,7 @@ import Avatar from "@components/avatar";
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import { Title } from "../../../utility/Utils";
+import S3BUCKET from '../../../configs/s3bucket'
 
 const roleColors = {
   job_seeker: "light-info",
@@ -44,7 +45,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
   const renderEditorialImg = () => {
     if (
       selectedEditorial !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}` !==
+      `${S3BUCKET}${selectedEditorial?.logo}` !==
         null
     ) {
       return (
@@ -52,7 +53,7 @@ const EditorialInfoCard = ({ selectedEditorial }) => {
           height="110"
           width="110"
           alt="editorial-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedEditorial?.logo}`}
+          src={`${S3BUCKET}${selectedEditorial?.logo}`}
           className="img-fluid rounded mt-3 mb-2"
         />
       );

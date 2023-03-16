@@ -51,8 +51,8 @@ const CustomHeader = ({
   // console.log("Residence data  display==>", residenceStoredata);
   return (
     <div className="invoice-list-table-header w-100 me-1 ms-50 mt-2 mb-75">
-      <Row style={{marginBottom:"10px" }}>
-        <Col xl="6" className="d-flex align-items-center p-0 1">
+      <Row style={{marginBottom:"10px" }} className="match-height">
+        <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
           <div className="d-flex align-items-center w-100 1">
             <label htmlFor="rows-per-page">{<Title str="Region" />}</label>
             <Input
@@ -68,26 +68,27 @@ const CustomHeader = ({
               ))}
             </Input>
           </div>
-
+        </Col>
+        <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
           <div className="d-flex align-items-center w-100 1">
-            <label htmlFor="rows-per-page">{<Title str="Province" />}</label>
-            <Input
-              className="mx-50"
-              type="select"
-              id="rows-per-page"
-              value={residence}
-              onChange={handleResidenceValue}
-              style={{ width: "15rem" }}
-            >
-              {residenceStoredata.map((val) => (
-                <option value={val._id}>{val.name}</option>
-              ))}
-            </Input>
-          </div>
+              <label htmlFor="rows-per-page">{<Title str="Province" />}</label>
+              <Input
+                className="mx-50"
+                type="select"
+                id="rows-per-page"
+                value={residence}
+                onChange={handleResidenceValue}
+                style={{ width: "15rem" }}
+              >
+                {residenceStoredata.map((val) => (
+                  <option value={val._id}>{val.name}</option>
+                ))}
+              </Input>
+            </div>
         </Col>
       </Row>
       <Row style={{marginBottom:"10px" }}>
-        <Col xl="6" className="d-flex align-items-center p-0">
+        <Col lg="6" sm="12" className="d-flex align-items-center p-0">
           <div className="d-flex align-items-center w-100">
             <label htmlFor="rows-per-page">
               {<Title str="NotificationTittle" />}
@@ -102,7 +103,7 @@ const CustomHeader = ({
             ></Input>
           </div>
         </Col>
-        <Col xl="6" className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1">
+        <Col lg="6" sm="12" className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1">
           <div className="d-flex align-items-center w-100">
             <label className="mb-0">
               {<Title str="NotificationMessage" />}
@@ -120,7 +121,7 @@ const CustomHeader = ({
       </Row>
 
       <Row style={{marginBottom:"10px" }}>
-        <Col xl="6" className="d-flex align-items-center p-0 1">
+        <Col lg="6" className="d-flex align-items-center p-0 1">
           <div className="d-flex align-items-center w-100 1">
             <button
               type="button"

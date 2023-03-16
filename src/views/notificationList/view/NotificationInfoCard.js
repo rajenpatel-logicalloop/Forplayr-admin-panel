@@ -23,6 +23,7 @@ import Avatar from "@components/avatar";
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
 import { Title } from "../../../utility/Utils";
+import S3BUCKET from '../../../configs/s3bucket'
 
 const roleColors = {
   job_seeker: "light-info",
@@ -45,7 +46,7 @@ const NotificationInfoCard = ({ selectedNotification }) => {
   const renderReportImg = () => {
     if (
       selectedReport !== null &&
-      `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.userData?.avatar}` !==
+      `${S3BUCKET}${selectedReport[0]?._id?.userData?.avatar}` !==
         null
     ) {
       return (
@@ -53,7 +54,7 @@ const NotificationInfoCard = ({ selectedNotification }) => {
           height="110"
           width="110"
           alt="report-avatar"
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedReport[0]?._id?.userData?.avatar}`}
+          src={`${S3BUCKET}${selectedReport[0]?._id?.userData?.avatar}`}
           className="img-fluid rounded mt-3 mb-2"
         />
       );

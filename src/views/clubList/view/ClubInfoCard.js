@@ -13,6 +13,7 @@ import Avatar from '@components/avatar'
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import { Title } from '../../../utility/Utils'
+import S3BUCKET from '../../../configs/s3bucket'
 
 const roleColors = {
   job_seeker: 'light-info',
@@ -33,13 +34,13 @@ const ClubInfoCard = ({ selectedClub }) => {
   // ** render user img
   const renderClubImg = () => {
     //console.log("selectedclub==>", selectedClub.data.shield)
-    if (selectedClub !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.data?.shield}` !== null) {
+    if (selectedClub !== null && `${S3BUCKET}/${selectedClub?.data?.shield}` !== null) {
       return (
         <img
           height='110'
           width='110'
           alt='club-avatar'
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedClub?.data?.shield}`}
+          src={`${S3BUCKET}${selectedClub?.data?.shield}`}
           className='img-fluid rounded mt-3 mb-2'
         />
       )

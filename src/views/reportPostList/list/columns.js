@@ -14,14 +14,15 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 // ** Reactstrap Imports
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { Title } from '../../../utility/Utils'
+import S3BUCKET from '../../../configs/s3bucket'
 
 // ** Renders Client Columns
 const renderClient = (row) => {
   // if (row?.userId?.avatar !== null) {
   if (row?._id?.postData?.images[0] !== null) {    
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.postData?.images[0]}`} width='32' height='32' />
+    return <Avatar className='me-1' img={`${S3BUCKET}${row?._id?.postData?.images[0]}`} width='32' height='32' />
   } else if (row?._id?.postData?.videos[0] !== null) {    
-    return <Avatar className='me-1' img={`https://forplayr.s3.ap-south-1.amazonaws.com/${row?._id?.postData?.videos[0]}`} width='32' height='32' />
+    return <Avatar className='me-1' img={`${S3BUCKET}${row?._id?.postData?.videos[0]}`} width='32' height='32' />
   } else {
     return (
       <Avatar

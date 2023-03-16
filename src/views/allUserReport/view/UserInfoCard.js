@@ -12,6 +12,7 @@ import Avatar from '@components/avatar'
 
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
+import S3BUCKET from '../../../configs/s3bucket'
 
 const roleColors = {
   job_seeker: 'light-info',
@@ -31,13 +32,13 @@ const UserInfoCard = ({ selectedUser }) => {
 
   // ** render user img
   const renderUserImg = () => {
-    if (selectedUser !== null && `https://forplayr.s3.ap-south-1.amazonaws.com/${selectedUser?.avatar}` !== null) {
+    if (selectedUser !== null && `${S3BUCKET}${selectedUser?.avatar}` !== null) {
       return (
         <img
           height='110'
           width='110'
           alt='user-avatar'
-          src={`https://forplayr.s3.ap-south-1.amazonaws.com/${selectedUser?.avatar}`}
+          src={`${S3BUCKET}${selectedUser?.avatar}`}
           className='img-fluid rounded mt-3 mb-2'
         />
       )
