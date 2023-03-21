@@ -23,7 +23,7 @@ import DataTable from "react-data-table-component";
 import { ChevronDown } from "react-feather";
 
 // ** Reactstrap Imports
-import { Row, Col, Card, Input, Collapse } from "reactstrap";
+import { Row, Col, Card, Input, Collapse, CardBody, CardHeader, CardTitle, Form } from "reactstrap";
 
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
@@ -50,128 +50,203 @@ const CustomHeader = ({
 }) => {
   // console.log("Residence data  display==>", residenceStoredata);
   return (
-    <div className="invoice-list-table-header w-100 me-1 ms-50 mt-2 mb-75">
-      <Row style={{marginBottom:"10px" }} className="match-height">
-        <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
-          <div className="d-flex align-items-center w-100 1">
-            <label htmlFor="rows-per-page">{<Title str="Region" />}</label>
-            <Input
-              className="mx-50"
-              type="select"
-              id="rows-per-page"
-              value={region}
-              onChange={handleRegionValue}
-              style={{ width: "15rem" }}
-            >
-              {regionStoreData.map((val) => (
-                <option value={val._id}>{val.name}</option>
-              ))}
-            </Input>
-          </div>
-        </Col>
-        <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
-          <div className="d-flex align-items-center w-100 1">
-              <label htmlFor="rows-per-page">{<Title str="Province" />}</label>
-              <Input
-                className="mx-50"
-                type="select"
-                id="rows-per-page"
-                value={residence}
-                onChange={handleResidenceValue}
-                style={{ width: "15rem" }}
-              >
-                {residenceStoredata.map((val) => (
-                  <option value={val._id}>{val.name}</option>
-                ))}
-              </Input>
+    <Card className="card-stationinfo">
+        <CardHeader>
+          <CardTitle tag="h4">Genera notifica</CardTitle>
+        </CardHeader>   
+        <CardBody>
+            <div>
+              <Form className="auth-station-form mt-2" encType="multipart/form">
+                <Row className="match-height">
+                  <Col md="6" sm="12" className="mb-1">
+                        <label htmlFor="rows-per-page">{<Title str="Region" />}</label>
+                        <Input
+                        className="mx-50"
+                        type="select"
+                        id="rows-per-page"
+                        value={region}
+                        onChange={handleRegionValue}
+                        // style={{ width: "15rem" }}
+                      >
+                        {regionStoreData.map((val) => (
+                          <option value={val._id}>{val.name}</option>
+                        ))}
+                      </Input>                        
+                  </Col>
+                  <Col md="6" sm="12" className="mb-1">
+                      <label htmlFor="rows-per-page">{<Title str="Province" />}</label>
+                        <Input
+                          className="mx-50"
+                          type="select"
+                          id="rows-per-page"
+                          value={residence}
+                          onChange={handleResidenceValue}
+                          // style={{ width: "15rem" }}
+                        >
+                          {residenceStoredata.map((val) => (
+                            <option value={val._id}>{val.name}</option>
+                          ))}
+                        </Input>                      
+                  </Col>                  
+                  <Col md="6" sm="12" className="mb-1">
+                      <label htmlFor="rows-per-page">{<Title str="NotificationTittle" />}</label>
+                      <Input
+                        className="mx-50"
+                        type="text"
+                        id="notification-tittle"
+                        value={notificationTittle}
+                        onChange={handleNotificationTittle}
+                        // style={{ width: "15rem" }}
+                      ></Input>
+                  </Col>
+                  <Col md="6" sm="12" className="mb-1">
+                      <label className="mb-0">{<Title str="NotificationMessage" />}</label>
+                      <Input
+                        className="mx-50"
+                        type="text"
+                        id="notification-message"
+                        value={notificationMessage}
+                        onChange={handleNotificationMessage}
+                        // style={{ width: "25rem" }}
+                      ></Input>
+                  </Col>
+                  <Col md="6" sm="12" className="mb-1">
+                        <button
+                          type="button"
+                          class="btn btn-primary mr-1 mb-1 waves-effect waves-light"
+                          onClick={Sendnotification}
+                          style={{width: "25rem"}}
+                      >
+                      {<Title str="Sendnotification" />}
+                      </button>                  
+                  </Col>                  
+                </Row>
+              </Form>
             </div>
-        </Col>
-      </Row>
-      <Row style={{marginBottom:"10px" }}>
-        <Col lg="6" sm="12" className="d-flex align-items-center p-0">
-          <div className="d-flex align-items-center w-100">
-            <label htmlFor="rows-per-page">
-              {<Title str="NotificationTittle" />}
-            </label>
-            <Input
-              className="mx-50"
-              type="text"
-              id="notification-tittle"
-              value={notificationTittle}
-              onChange={handleNotificationTittle}
-              style={{ width: "15rem" }}
-            ></Input>
-          </div>
-        </Col>
-        <Col lg="6" sm="12" className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1">
-          <div className="d-flex align-items-center w-100">
-            <label className="mb-0">
-              {<Title str="NotificationMessage" />}
-            </label>
-            <Input
-              className="mx-50"
-              type="text"
-              id="notification-message"
-              value={notificationMessage}
-              onChange={handleNotificationMessage}
-              style={{ width: "25rem" }}
-            ></Input>
-          </div>
-        </Col>
-      </Row>
+        </CardBody>   
+    </Card>
+    // <div className="invoice-list-table-header w-100 me-1 ms-50 mt-2 mb-75">
+    //   <Row style={{marginBottom:"10px" }} className="match-height">
+    //     <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
+    //       <div className="d-flex align-items-center w-100 1">
+    //         <label htmlFor="rows-per-page">{<Title str="Region" />}</label>
+    //         <Input
+    //           className="mx-50"
+    //           type="select"
+    //           id="rows-per-page"
+    //           value={region}
+    //           onChange={handleRegionValue}
+    //           style={{ width: "15rem" }}
+    //         >
+    //           {regionStoreData.map((val) => (
+    //             <option value={val._id}>{val.name}</option>
+    //           ))}
+    //         </Input>
+    //       </div>
+    //     </Col>
+    //     <Col lg="6" sm="12" className="d-flex align-items-center p-0 1">
+    //       <div className="d-flex align-items-center w-100 1">
+    //           <label htmlFor="rows-per-page">{<Title str="Province" />}</label>
+    //           <Input
+    //             className="mx-50"
+    //             type="select"
+    //             id="rows-per-page"
+    //             value={residence}
+    //             onChange={handleResidenceValue}
+    //             style={{ width: "15rem" }}
+    //           >
+    //             {residenceStoredata.map((val) => (
+    //               <option value={val._id}>{val.name}</option>
+    //             ))}
+    //           </Input>
+    //         </div>
+    //     </Col>
+    //   </Row>
+    //   <Row style={{marginBottom:"10px" }}>
+    //     <Col lg="6" sm="12" className="d-flex align-items-center p-0">
+    //       <div className="d-flex align-items-center w-100">
+    //         <label htmlFor="rows-per-page">
+    //           {<Title str="NotificationTittle" />}
+    //         </label>
+    //         <Input
+    //           className="mx-50"
+    //           type="text"
+    //           id="notification-tittle"
+    //           value={notificationTittle}
+    //           onChange={handleNotificationTittle}
+    //           style={{ width: "15rem" }}
+    //         ></Input>
+    //       </div>
+    //     </Col>
+    //     <Col lg="6" sm="12" className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1">
+    //       <div className="d-flex align-items-center w-100">
+    //         <label className="mb-0">
+    //           {<Title str="NotificationMessage" />}
+    //         </label>
+    //         <Input
+    //           className="mx-50"
+    //           type="text"
+    //           id="notification-message"
+    //           value={notificationMessage}
+    //           onChange={handleNotificationMessage}
+    //           style={{ width: "25rem" }}
+    //         ></Input>
+    //       </div>
+    //     </Col>
+    //   </Row>
 
-      <Row style={{marginBottom:"10px" }}>
-        <Col lg="6" className="d-flex align-items-center p-0 1">
-          <div className="d-flex align-items-center w-100 1">
-            <button
-              type="button"
-              class="btn btn-primary mr-1 mb-1 waves-effect waves-light"
-              onClick={Sendnotification}
-            >
-              {<Title str="Sendnotification" />}
-            </button>
-          </div>
-        </Col>
-      </Row>
+    //   <Row style={{marginBottom:"10px" }}>
+    //     <Col lg="6" className="d-flex align-items-center p-0 1">
+    //       <div className="d-flex align-items-center w-100 1">
+    //         <button
+    //           type="button"
+    //           class="btn btn-primary mr-1 mb-1 waves-effect waves-light"
+    //           onClick={Sendnotification}
+    //         >
+    //           {<Title str="Sendnotification" />}
+    //         </button>
+    //       </div>
+    //     </Col>
+    //   </Row>
 
-      {/* <Row >
-        <Col xl="6" className="d-flex align-items-center p-0">
-          <div className="d-flex align-items-center w-100">
-            <label htmlFor="rows-per-page">{<Title str="show" />}</label>
-            <Input
-              className="mx-50"
-              type="select"
-              id="rows-per-page"
-              value={rowsPerPage}
-              onChange={handlePerPage}
-              style={{ width: "5rem" }}
-            >
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-            </Input>
-            <label htmlFor="rows-per-page">{<Title str="entries" />}</label>
-          </div>
-        </Col>
-        <Col
-          xl="6"
-          className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
-        >
-          <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
-            <label className="mb-0" htmlFor="search-invoice">
-              {<Title str="Search" />}:
-            </label>
-            <Input
-              id="search-invoice"
-              className="ms-50 w-100"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => handleFilter(e.target.value)}
-            />
-          </div>
-        </Col>
-      </Row> */}
-    </div>
+    //   {/* <Row >
+    //     <Col xl="6" className="d-flex align-items-center p-0">
+    //       <div className="d-flex align-items-center w-100">
+    //         <label htmlFor="rows-per-page">{<Title str="show" />}</label>
+    //         <Input
+    //           className="mx-50"
+    //           type="select"
+    //           id="rows-per-page"
+    //           value={rowsPerPage}
+    //           onChange={handlePerPage}
+    //           style={{ width: "5rem" }}
+    //         >
+    //           <option value="10">10</option>
+    //           <option value="25">25</option>
+    //           <option value="50">50</option>
+    //         </Input>
+    //         <label htmlFor="rows-per-page">{<Title str="entries" />}</label>
+    //       </div>
+    //     </Col>
+    //     <Col
+    //       xl="6"
+    //       className="d-flex align-items-sm-center justify-content-xl-end justify-content-start flex-xl-nowrap flex-wrap flex-sm-row flex-column pe-xl-1 p-0 mt-xl-0 mt-1"
+    //     >
+    //       <div className="d-flex align-items-center mb-sm-0 mb-1 me-1">
+    //         <label className="mb-0" htmlFor="search-invoice">
+    //           {<Title str="Search" />}:
+    //         </label>
+    //         <Input
+    //           id="search-invoice"
+    //           className="ms-50 w-100"
+    //           type="text"
+    //           value={searchTerm}
+    //           onChange={(e) => handleFilter(e.target.value)}
+    //         />
+    //       </div>
+    //     </Col>
+    //   </Row> */}
+    // </div>
   );
 };
 
