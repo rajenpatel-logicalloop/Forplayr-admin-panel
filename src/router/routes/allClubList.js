@@ -18,6 +18,9 @@ const AppRoutes = [
         element: <ClubView />,
         path: '/apps/all-club-list/view/:id'
     }
+    // {
+
+    // }
 ]
 
 export default AppRoutes
