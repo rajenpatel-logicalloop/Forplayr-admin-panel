@@ -1,4 +1,4 @@
-import { User } from "react-feather"
+import { User, MessageSquare } from "react-feather"
 //import { Club } from "../../assets/images/icons/Club.png"
 
 import { convertLang, Title } from  '../../utility/Utils'
@@ -64,7 +64,8 @@ export default [
     {
         id: 'notification',
         title: '  Notifiche',
-        icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}}  />, //<User size={20} />, src={require('@src/assets/images/icons/Editorial.png').default} alt="brand logo"
+        // icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}}  />, //<User size={20} />, src={require('@src/assets/images/icons/Editorial.png').default} alt="brand logo"
+        icon: <MessageSquare size={12} style={{color:'green'}} />,
         navLink: '/apps/all-notification-list'
     }    
 ]

@@ -21,6 +21,7 @@ import S3BUCKET from '../../../configs/s3bucket'
 // ** Renders Client Columns
 const renderClient = (row) => {
   if (row?.avatar !== null) {
+    // console.log("Default avatra==>", `${S3BUCKET}${row?.avatar}`);
     return <Avatar className='me-1' img={`${S3BUCKET}${row?.avatar}`} width='32' height='32' />
   } else {
     return (
@@ -140,7 +141,7 @@ export const columns = [
     selector: row => row?.isPermited,
     cell: row => (
       <Badge className='text-capitalize' color={statusObj[row?.status ? 'active' : 'inactive']} pill>
-        {row?.status ? 'Allowed' : 'Not Allowed'}
+        {row?.isPermited ? 'Allowed' : 'Not Allowed'}
       </Badge>
     )
   },
@@ -211,7 +212,8 @@ export const columns = [
               <Slash size={14} className='me-50' />
               <span className='align-middle'>{<Title str={row.status === "blocked" ? "Unblock" : "Block"} />}</span>
             </DropdownItem> 
-            {/*!row?.isPermited && */<DropdownItem
+            {/*!row?.isPermited && */}
+            {/* <DropdownItem
               className='w-100'
               onClick={e => {
                 e.preventDefault()
@@ -220,7 +222,7 @@ export const columns = [
             >
               <CheckSquare size={14} className='me-50' />
               <span className='align-middle'>{<Title  str={row?.isPermited ? "Disallow" : "Allow"} />}</span>
-            </DropdownItem>}
+            </DropdownItem> */}
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>

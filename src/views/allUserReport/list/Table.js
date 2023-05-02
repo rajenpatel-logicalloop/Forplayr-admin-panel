@@ -84,7 +84,7 @@ const UsersList = () => {
   // ** Store Vars
   const dispatch = useDispatch()
   const store = useSelector(state => state.userList)
-
+  // console.log("Store data==>", store);
   // ** States
   const [sort, setSort] = useState('desc')
   const [searchTerm, setSearchTerm] = useState('')
@@ -182,12 +182,13 @@ const UsersList = () => {
     const filters = {
       q: searchTerm
     }
-
+    console.log("Data rander==>", filters);
     const isFiltered = Object.keys(filters).some(function (k) {
       return filters[k].length > 0
     })
 
     if (store?.data?.length > 0) {
+     
       return store?.data
     } else if (store?.data?.length === 0 && isFiltered) {
       return []

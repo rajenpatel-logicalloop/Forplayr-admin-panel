@@ -19,6 +19,7 @@ export const getAllData = createAsyncThunk('appUserList/getAllData', async () =>
     }
   }
   const response = await axios.get(`${API}user/fetch`, config)
+  // console.log("Response data==>", response);
   return response.data.data
 })
 
@@ -41,7 +42,7 @@ export const getData = createAsyncThunk('appUserList/getData', async (params) =>
   const response = await axios.get(`${API}user/fetch`, config)
   return {
     params,
-    data: response,
+    data: response.data.data,
     totalPages: response.data.meta.total
   }
 })

@@ -152,7 +152,8 @@ export const columns = [
               }}
             >
               <Slash size={14} className='me-50' />
-              <span className='align-middle'>{<Title str={row.status === "refused" ? "Approved" : "Refused"} />}</span>
+              {/* Approved and Refused lable display in action button*/}
+              <span className='align-middle'>{<Title str={row.status === "refused" ? "Approvato" : "Rifiutato"} />}</span>
             </DropdownItem> 
 
             <DropdownItem
@@ -181,8 +182,8 @@ export const columns = [
               <span className='align-middle'>{row.status === "blocked" ? "Unblock" : "Block"}</span>
             </DropdownItem>  */}
 
-            {/*!row?.isPermited && */
-            <DropdownItem
+            {/*!row?.isPermited && */}
+            {/* <DropdownItem
               className='w-100'
               onClick={e => {
                 e.preventDefault()
@@ -191,7 +192,7 @@ export const columns = [
             >
               <CheckSquare size={14} className='me-50' />
               <span className='align-middle'>{ <Title str={row?.isPermited ? "Disallow" : "Allow"} />}</span>
-            </DropdownItem>}
+            </DropdownItem> */}
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>
