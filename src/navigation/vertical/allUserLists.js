@@ -67,5 +67,21 @@ export default [
         // icon: <img style={{ height: '20px', width: '20px', borderRadius: '5px'}}  />, //<User size={20} />, src={require('@src/assets/images/icons/Editorial.png').default} alt="brand logo"
         icon: <MessageSquare size={12} style={{color:'green'}} />,
         navLink: '/apps/all-notification-list'
-    }    
+    },
+    {
+        id:'companybanner',
+        title: 'Aziende sponsor',
+        children:[
+            {
+                id: 'createcompanybanner',
+                title: 'Creare aziende sponsor',
+                navLink: '/apps/create-companybanner'
+            },
+            {
+                id: 'companybannerlist',
+                title: 'Elenco aziende sponsor',
+                navLink: '/apps/all-companybanner-list'
+            }
+        ]
+    }   
 ]
