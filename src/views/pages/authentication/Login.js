@@ -155,8 +155,8 @@ const Login = () => {
             toast((t) => (
               <ToastContent
                 t={t}
-                name={`Login Successfully`}
-                role={`You have successfully logged in as an ${data.role || 'admin'} user to Forplayr. Now you can start to explore. Enjoy!`}
+                name={`Accedi con successo`}
+                role={`Hai effettuato correttamente l'accesso come un ${data.role || 'admin'} utente a Forplayr. Ora puoi iniziare a esplorare. Godere!`}
               />
             ))
           }
@@ -166,8 +166,9 @@ const Login = () => {
           toast((t) => (
             <ToastContent
               t={t}
-              name={`Login Failed`}
-              role={`${err.response.data}`} //
+              name={`Accesso non riuscito`}
+              // role={`${err.response.data}`} //
+              role={'Utente/password non validi'}
             />
           ))
         })
