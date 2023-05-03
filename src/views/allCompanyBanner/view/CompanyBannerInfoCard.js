@@ -39,8 +39,8 @@ const CompanyBannerInfoCard = ({ selectedCompanyBanner }) => {
     if (selectedCompanyBanner !== null && `${S3BUCKET}${selectedCompanyBanner?.image}` !== null) {
       return (
         <img
-          height='110'
-          width='110'
+          height='310'
+          width='310'
           alt='user-avatar'
           src={`${S3BUCKET}${selectedCompanyBanner?.image}`}
           className='img-fluid rounded mt-3 mb-2'
@@ -97,7 +97,7 @@ const CompanyBannerInfoCard = ({ selectedCompanyBanner }) => {
                 </li>
                 <li className='mb-75'>
                   <span className='fw-bolder me-25'>{<Title str='url' />} :</span>
-                  <span>{selectedCompanyBanner?.url}</span>
+                  <span><a href={selectedCompanyBanner?.url} target='_blank'>{selectedCompanyBanner?.url}</a></span>
                 </li>
                 </ul>
             ) : null}
