@@ -32,6 +32,9 @@ const renderClient = (row) => {
   }
 }
 
+/* Render link columns*/
+
+
 const statusObj = {
     pending: 'light-warning',
     active: 'light-success',
