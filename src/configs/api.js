@@ -1,7 +1,6 @@
 // AWS SERVER API
 // const API = "https://forplayer-test.herokuapp.com/api/v1/"
 
-
 //TESTING SERVER
 //const API = "https://forplayer-test.herokuapp.com/api/v1/"
 
