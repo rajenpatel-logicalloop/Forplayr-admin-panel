@@ -162,7 +162,7 @@ const ToastContent = ({ t, name, role }) => {
             const res = await axios.post(`${API}companybanner`, data, config)
               console.log("Data saved successfully", res)
               if (res.status === 201) {
-                navigate('/apps/all-companybanner-list/view')
+                navigate('/apps/all-companybanner-list')
               }
             } catch (error) {
               console.log(error)

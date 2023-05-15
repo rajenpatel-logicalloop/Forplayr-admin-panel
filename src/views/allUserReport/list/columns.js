@@ -191,7 +191,7 @@ export const columns = [
               // href='/'
               className='w-100'
               onClick={e => {
-                e.preventDefault()
+                // e.preventDefault()
                 store.dispatch(deleteUser(row._id))
               }}
             >

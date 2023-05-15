@@ -202,9 +202,9 @@ const Login = () => {
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='fw-bold mb-1'>
-              Welcome to Forplayr! 👋
+              Benvenuto a Forplayr! 👋
             </CardTitle>
-            <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
+            <CardText className='mb-2'>Accedi al tuo account e inizia l'avventura</CardText>
             <Form className='auth-login-form mt-2' onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-1'>
                 <Label className='form-label' for='login-email'>
@@ -228,10 +228,10 @@ const Login = () => {
               <div className='mb-1'>
                 <div className='d-flex justify-content-between'>
                   <Label className='form-label' for='login-password'>
-                    Password
+                    Parola d'ordine
                   </Label>
                   <Link to='/forgot-password'>
-                    <small>Forgot Password?</small>
+                    <small>Ha dimenticato la password?</small>
                   </Link>
                 </div>
                 <Controller
@@ -246,11 +246,11 @@ const Login = () => {
               <div className='form-check mb-1'>
                 <Input type='checkbox' id='remember-me' />
                 <Label className='form-check-label' for='remember-me'>
-                  Remember Me
+                  Ricordati di me
                 </Label>
               </div>
               <Button type='submit' color='primary' block>
-                Sign in
+                Registrazione
               </Button>
             </Form>
             {/* <p className='text-center mt-2'>
